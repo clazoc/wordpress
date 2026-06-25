@@ -22,7 +22,7 @@ Richiede Docker e Docker Compose.
 
 ```bash
 cp .env.example .env
-docker compose up -d
+docker compose up -d --build
 ```
 
 - Sito: http://localhost:8080
@@ -32,3 +32,5 @@ docker compose up -d
 Al primo avvio va completata l'installazione guidata di WordPress da browser, poi attivato il tema **Blocksy** (parent) e il child theme **Comparatore Theme**, e attivato il plugin **Comparatore Core**.
 
 Questo setup è indipendente dalla scelta finale di hosting (gestito o server proprio): in produzione basta puntare lo stesso `wp-content` a un'installazione WordPress standard.
+
+**Non hai mai usato WordPress o VS Code?** Segui la guida passo-passo in [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md), che copre installazione, primo avvio e debug del codice PHP da VS Code (Xdebug già configurato in questo repo).

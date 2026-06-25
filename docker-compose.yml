@@ -11,7 +11,8 @@ services:
       - db_data:/var/lib/mysql
 
   wordpress:
-    image: wordpress:php8.2-apache
+    build:
+      context: ./docker/wordpress
     restart: unless-stopped
     depends_on:
       - db
@@ -25,6 +26,8 @@ services:
       WORDPRESS_DEBUG: ${WP_DEBUG:-1}
     volumes:
       - ./wp-content:/var/www/html/wp-content
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   wpcli:
     image: wordpress:cli-php8.2
