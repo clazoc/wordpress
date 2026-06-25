@@ -1,0 +1,27 @@
+/*
+ * Design tokens condivisi con il mockup approvato (home v4).
+ * Valori di riferimento da riportare anche nel Customizer di Blocksy
+ * (Global Colors) quando si configura il tema via dashboard.
+ */
+:root {
+	--ab-ink: #1f2b1c;
+	--ab-ink-soft: #5b6b54;
+	--ab-bg: #f7faf2;
+	--ab-line: #dde9d2;
+
+	--ab-accent: #7ac843;       /* CTA primarie */
+	--ab-accent-hover: #408f55; /* hover / testi su sfondo chiaro */
+	--ab-accent-soft: #eef7e2;  /* badge, sfondi tenui */
+	--ab-accent-bright: #99cc66;/* dettagli puntuali (dot, eyebrow) */
+
+	--ab-rainbow: linear-gradient(
+		90deg,
+		#c9d92e,
+		#7ac843,
+		#2f9e8f,
+		#3a6ea5,
+		#a25fc9,
+		#e0567e,
+		#f2a900
+	);
+}
