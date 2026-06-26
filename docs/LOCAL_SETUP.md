@@ -95,7 +95,8 @@ Sei ora nella **bacheca di amministrazione** di WordPress (si chiama "wp-admin")
 ### Attivare tema e plugin del progetto
 
 1. Vai su **Aspetto → Temi**: dovrai installare il tema **Blocksy** (cercalo e installalo dalla pagina "Aggiungi nuovo tema", è gratuito sulla repository ufficiale WordPress), poi attiva **Comparatore Theme** (il nostro child theme, già presente perché è nel repository).
-2. Vai su **Plugin → Plugin installati**: troverai già **Comparatore Core**, clicca "Attiva".
+2. Dopo aver attivato Blocksy, WordPress mostrerà un avviso che consiglia di installare e attivare **Blocksy Companion**: accetta e attivalo. È il plugin ufficiale (degli stessi autori di Blocksy) che sblocca i componenti che useremo nel sito — tabs, accordion FAQ, pricing card, slider per le recensioni, template demo. Senza questo plugin il tema perde gran parte delle funzionalità per cui lo abbiamo scelto.
+3. Vai su **Plugin → Plugin installati**: troverai già **Comparatore Core**, clicca "Attiva".
 
 A questo punto il sito su http://localhost:8080 mostrerà il tema in lavorazione.
 
