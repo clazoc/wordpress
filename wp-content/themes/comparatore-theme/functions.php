@@ -38,5 +38,13 @@ add_action( 'wp_enqueue_scripts', function () {
 			[ 'comparatore-theme-tokens' ],
 			wp_get_theme()->get( 'Version' )
 		);
+
+		wp_enqueue_script(
+			'comparatore-theme-front-page',
+			get_stylesheet_directory_uri() . '/assets/js/front-page.js',
+			[],
+			wp_get_theme()->get( 'Version' ),
+			true
+		);
 	}
 } );

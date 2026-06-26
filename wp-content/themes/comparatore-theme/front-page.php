@@ -35,6 +35,27 @@ get_header();
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
 				<a class="ab-btn ab-btn-primary" href="#comparatore">Confronta ora</a>
 			</div>
+
+			<button type="button" class="ab-menu-toggle" aria-expanded="false" aria-controls="ab-mobile-menu">
+				<span></span><span></span><span></span>
+				<span class="screen-reader-text">Apri il menu</span>
+			</button>
+		</div>
+
+		<div id="ab-mobile-menu" class="ab-mobile-menu" hidden>
+			<?php
+			wp_nav_menu( [
+				'theme_location' => 'primary',
+				'container'      => false,
+				'menu_class'     => 'ab-menu',
+				'fallback_cb'    => false,
+				'depth'          => 1,
+			] );
+			?>
+			<div class="ab-nav-actions">
+				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
+				<a class="ab-btn ab-btn-primary" href="#comparatore">Confronta ora</a>
+			</div>
 		</div>
 	</header>
 
