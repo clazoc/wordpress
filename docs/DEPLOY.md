@@ -73,12 +73,87 @@ Quando deciderai di gestire l'infrastruttura in autonomia, il vantaggio è che p
 
 ### 1. Requisiti del server
 
-- Un VPS (es. Hetzner, DigitalOcean, Aruba Cloud) con almeno 2 vCPU / 4 GB RAM per partire (da scalare quando il traffico crescerà verso i volumi discussi in precedenza).
+- Una VM (es. Azure, dato che è il provider già in uso — vedi sezione dedicata più sotto) con almeno 2 vCPU / 4 GB RAM per partire (da scalare quando il traffico crescerà verso i volumi discussi in precedenza).
 - Sistema operativo Linux (Ubuntu LTS consigliato).
 - **Docker** e **Docker Compose** installati sul server (stessa logica usata in locale).
-- Un dominio con i record DNS (A/AAAA) puntati all'IP del server.
+- Un dominio con i record DNS (A/AAAA) puntati all'IP pubblico della VM.
 
-### 2. Differenze rispetto all'ambiente locale
+### 2. Creare la Virtual Machine su Azure
+
+Visto che usi già Azure come provider, ecco i passaggi per creare la VM che ospiterà WordPress. Puoi farlo dal **portale Azure** (portal.azure.com) oppure da CLI (`az`); qui copriamo entrambi.
+
+#### Via portale Azure
+
+1. Accedi a [portal.azure.com](https://portal.azure.com) e cerca **"Macchine virtuali"** nella barra di ricerca in alto.
+2. Clicca **"+ Crea" → "Macchina virtuale"**.
+3. Scheda **Base**:
+   - **Gruppo di risorse**: creane uno nuovo, es. `rg-altrabolletta-prod` (utile per gestire insieme tutte le risorse del progetto e poterle eliminare in blocco se necessario).
+   - **Nome macchina virtuale**: es. `vm-altrabolletta-prod`.
+   - **Area (region)**: scegli quella più vicina al tuo pubblico target (es. "Italy North" se disponibile, altrimenti "West Europe").
+   - **Immagine**: **Ubuntu Server 22.04 LTS** (allineata a quanto già usato/consigliato in questa guida).
+   - **Dimensione**: parti da una taglia tipo **Standard_B2s** (2 vCPU / 4 GB RAM, economica e adatta per iniziare); la potrai ridimensionare in seguito senza ricreare la VM.
+   - **Autenticazione**: scegli **Chiave pubblica SSH** (più sicura della password). Se non ne hai già una, Azure può generarla per te al volo — scarica e conserva la chiave privata `.pem` che ti propone, ti servirà per connetterti.
+   - **Porte di ingresso pubbliche**: consenti **SSH (22)** per ora; le porte 80/443 le apriremo dopo, a livello di Network Security Group.
+4. Scheda **Disks**: il disco SO predefinito (es. 30 GB Premium SSD) va bene per iniziare.
+5. Scheda **Networking**: lascia la rete virtuale e subnet di default (Azure le crea automaticamente), verifica che venga creato un **IP pubblico** assegnato alla VM (necessario per puntarci il dominio).
+6. Clicca **"Rivedi e crea"**, poi **"Crea"**. Dopo un paio di minuti la VM sarà pronta; annota l'**indirizzo IP pubblico** mostrato nella pagina della risorsa.
+
+#### Via Azure CLI (alternativa più rapida se preferisci il terminale)
+
+```bash
+az login
+
+az group create --name rg-altrabolletta-prod --location westeurope
+
+az vm create \
+  --resource-group rg-altrabolletta-prod \
+  --name vm-altrabolletta-prod \
+  --image Ubuntu2204 \
+  --size Standard_B2s \
+  --admin-username altrabolletta \
+  --generate-ssh-keys
+```
+
+Il comando restituisce l'IP pubblico della VM (`publicIpAddress`) e salva la chiave SSH in `~/.ssh/id_rsa` (se non ne avevi già una).
+
+#### Aprire le porte 80/443 (Network Security Group)
+
+Per servire il sito via web serve aprire HTTP/HTTPS sul firewall di Azure (NSG) associato alla VM:
+
+```bash
+az vm open-port --resource-group rg-altrabolletta-prod --name vm-altrabolletta-prod --port 80 --priority 100
+az vm open-port --resource-group rg-altrabolletta-prod --name vm-altrabolletta-prod --port 443 --priority 101
+```
+
+(oppure dal portale: vai sulla risorsa VM → **Networking** → **Aggiungi regola porta in ingresso**, una per la 80 e una per la 443).
+
+#### Connessione e setup iniziale
+
+```bash
+ssh -i ~/.ssh/id_rsa altrabolletta@<IP-PUBBLICO-VM>
+
+# installa Docker e Docker Compose
+curl -fsSL https://get.docker.com | sudo sh
+sudo usermod -aG docker $USER
+# rifai login SSH per applicare il gruppo "docker"
+
+# verifica
+docker --version
+docker compose version
+```
+
+#### IP statico e dominio
+
+Per impostazione predefinita Azure assegna un IP pubblico **dinamico** (può cambiare se la VM viene riavviata/fermata). Prima di puntarci il dominio, rendilo **statico**:
+
+- Portale: vai sulla risorsa **IP pubblico** della VM → **Configurazione** → **Assegnazione: Statico** → Salva.
+- CLI: `az network public-ip update --resource-group rg-altrabolletta-prod --name <nome-ip-pubblico> --allocation-method Static`
+
+Poi crea un record **A** nel pannello DNS del tuo dominio che punti a quell'IP statico.
+
+> Costo: una VM Standard_B2s accesa 24/7 ha un costo mensile contenuto ma continuo (verifica il prezzo aggiornato per la tua region su [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)); se in futuro il traffico crescerà molto, valuta anche un **Azure Database for MariaDB/MySQL** gestito al posto del container `db`, per delegare ad Azure backup e patching del database.
+
+### 3. Differenze rispetto all'ambiente locale
 
 Il `docker-compose.yml` del repository è pensato per lo sviluppo (porte esposte direttamente, `WP_DEBUG` attivo, nessun HTTPS). In produzione serve un file **dedicato** che:
 
@@ -89,7 +164,7 @@ Il `docker-compose.yml` del repository è pensato per lo sviluppo (porte esposte
 
 Quando arriveremo a questo scenario, andrà creato un secondo file, ad esempio `docker-compose.prod.yml`, da mantenere nel repository ma con i segreti reali forniti solo a runtime sul server (mai committati).
 
-### 3. Deploy del codice
+### 4. Deploy del codice
 
 Il server avrà una copia del repository (via `git clone`), e ad ogni aggiornamento:
 
@@ -100,15 +175,15 @@ docker compose -f docker-compose.prod.yml up -d --build
 
 Questo aggiorna tema e plugin custom (`wp-content/themes/comparatore-theme`, `wp-content/plugins/comparatore-core`) senza toccare il database né i contenuti, che restano nei volumi Docker persistenti sul server.
 
-### 4. Backup
+### 5. Backup
 
 A differenza dell'hosting gestito (che di solito include backup automatici), su un server proprio i backup sono **a tuo carico**:
 
 - Backup periodico del database (`mysqldump` schedulato, es. via cron).
 - Backup della cartella `wp-content/uploads` (media caricati dagli utenti/editor).
-- Idealmente copie su storage esterno (es. object storage S3-compatibile), non solo sullo stesso server.
+- Idealmente copie su storage esterno, non solo sullo stesso server. Su Azure la scelta naturale è **Azure Backup** abilitato direttamente sulla VM (snapshot periodici dell'intero disco, gestiti dal portale senza script da mantenere) oppure, per backup più granulari, caricare gli archivi di `mysqldump`/`uploads` su un **Azure Storage Account** (Blob Storage) via cron + [`azcopy`](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10) o `az storage blob upload`.
 
-### 5. Migrazione da register.it al server proprio (quando arriverà il momento)
+### 6. Migrazione da register.it al server proprio (quando arriverà il momento)
 
 1. Esporta il database dal sito su register.it (via phpMyAdmin o plugin di migrazione).
 2. Importa il database nel nuovo ambiente.
