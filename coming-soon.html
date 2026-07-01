@@ -218,11 +218,35 @@
 
 function handleSubmit(e) {
   e.preventDefault();
-  var btn = e.target.querySelector('button');
-  btn.textContent = 'Fatto! ✓';
-  btn.style.background = '#408f55';
-  btn.disabled = true;
-  e.target.querySelector('input').disabled = true;
+  var form  = e.target;
+  var input = form.querySelector('input[type="email"]');
+  var btn   = form.querySelector('button');
+  var email = input.value.trim();
+
+  btn.textContent = '...';
+  btn.disabled    = true;
+  input.disabled  = true;
+
+  fetch('newsletter-subscribe.php', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ email: email })
+  })
+  .then(function (res) { return res.json(); })
+  .then(function (data) {
+    if (data.status === 'ok' || data.status === 'already_subscribed') {
+      btn.textContent    = 'Fatto! ✓';
+      btn.style.background = '#408f55';
+    } else {
+      throw new Error(data.error || 'Errore');
+    }
+  })
+  .catch(function () {
+    btn.textContent      = 'Riprova';
+    btn.style.background = '#e0567e';
+    btn.disabled         = false;
+    input.disabled       = false;
+  });
 }
 </script>
 
