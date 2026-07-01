@@ -164,6 +164,15 @@
   }
 </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HDW2DHFQ6P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HDW2DHFQ6P');
+</script>
 <body>
 
 <div class="rainbow-bar"></div>
@@ -177,7 +186,7 @@
 
   <p class="lead">Stiamo costruendo qualcosa di diverso: zero provvigioni, zero chiamate, confronto trasparente tra tutti i fornitori. Lasciaci la tua email e ti avvisiamo appena siamo online.</p>
 
-  <form class="form" action="https://altrabolletta.us16.list-manage.com/subscribe/post?u=5625d9c767dfd6244be43631e&amp;id=d30f8b093e" method="post">
+  <form class="form" action="https://altrabolletta.us16.list-manage.com/subscribe/post?u=5625d9c767dfd6244be43631e&amp;id=d30f8b093e&amp;f_id=00932be0f0" method="post">
     <input type="hidden" name="b_5625d9c767dfd6244be43631e_d30f8b093e" tabindex="-1" value="">
     <input type="email" placeholder="La tua email" required name="EMAIL">
     <button type="submit" name="subscribe">Avvisami</button>
@@ -216,39 +225,6 @@
   a.href = 'mailto:' + u + '@' + d;
   a.textContent = u + '@' + d;
 })();
-
-function handleSubmit(e) {
-  e.preventDefault();
-  var form  = e.target;
-  var input = form.querySelector('input[type="email"]');
-  var btn   = form.querySelector('button');
-  var email = input.value.trim();
-
-  btn.textContent = '...';
-  btn.disabled    = true;
-  input.disabled  = true;
-
-  fetch('newsletter-subscribe.php', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ email: email })
-  })
-  .then(function (res) { return res.json(); })
-  .then(function (data) {
-    if (data.status === 'ok' || data.status === 'already_subscribed') {
-      btn.textContent    = 'Fatto! ✓';
-      btn.style.background = '#408f55';
-    } else {
-      throw new Error(data.error || 'Errore');
-    }
-  })
-  .catch(function () {
-    btn.textContent      = 'Riprova';
-    btn.style.background = '#e0567e';
-    btn.disabled         = false;
-    input.disabled       = false;
-  });
-}
 </script>
 
 </body>
