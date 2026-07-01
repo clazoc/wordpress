@@ -205,10 +205,17 @@
 </main>
 
 <footer>
-  &copy; 2026 Altrabolletta &nbsp;·&nbsp; <a href="mailto:info@altrabolletta.it" style="color:inherit;">info@altrabolletta.it</a>
+  &copy; 2026 Altrabolletta &nbsp;·&nbsp; <a id="ab-contact" style="color:inherit;"></a>
 </footer>
 
 <script>
+(function () {
+  var u = 'info', d = 'altrabolletta.it';
+  var a = document.getElementById('ab-contact');
+  a.href = 'mailto:' + u + '@' + d;
+  a.textContent = u + '@' + d;
+})();
+
 function handleSubmit(e) {
   e.preventDefault();
   var btn = e.target.querySelector('button');
