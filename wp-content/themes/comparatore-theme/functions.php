@@ -31,6 +31,21 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_get_theme()->get( 'Version' )
 	);
 
+	$services_templates = [
+		'templates/page-servizi.php',
+		'templates/page-servizi-privati.php',
+		'templates/page-servizi-imprese.php',
+		'templates/page-servizi-societa.php',
+	];
+	if ( is_page() && in_array( get_page_template_slug(), $services_templates, true ) ) {
+		wp_enqueue_style(
+			'comparatore-theme-services',
+			get_stylesheet_directory_uri() . '/assets/css/services.css',
+			[ 'comparatore-theme-tokens' ],
+			wp_get_theme()->get( 'Version' )
+		);
+	}
+
 	if ( is_front_page() && ! is_home() ) {
 		wp_enqueue_style(
 			'comparatore-theme-front-page',
