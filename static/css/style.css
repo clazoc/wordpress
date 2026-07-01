@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+:root {
+  --ink: #212529;
+  --ink-soft: #5b6b54;
+  --bg: #f7faf2;
+  --line: #dde9d2;
+  --accent: #99cc66;
+  --accent-hover: #408f55;
+  --accent-soft: #eef7e2;
+  --rainbow: linear-gradient(90deg,#c9d92e,#7ac843,#2f9e8f,#3a6ea5,#a25fc9,#e0567e,#f2a900);
+  --logo-text: #212529;
+  --logo-green: #99cc66;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lato', 'Segoe UI', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* RAINBOW BAR */
+.rainbow-bar { height: 5px; background: var(--rainbow); }
+
+/* LOGO */
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--logo-text);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 48px;
+}
+.logo span { color: var(--logo-green); }
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+/* HEADINGS */
+h1 {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+h2, h3, h4 {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* LEAD TEXT */
+p.lead {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+}
+
+/* ── COMING SOON ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.form input {
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  background: #fff;
+  width: 280px;
+  max-width: 100%;
+  outline: none;
+}
+.form input:focus { border-color: var(--accent); }
+.form button {
+  padding: 13px 24px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.form-note { font-size: 12px; color: var(--ink-soft); }
+
+.divider {
+  width: 64px;
+  height: 4px;
+  background: var(--rainbow);
+  border-radius: 2px;
+  margin: 56px auto;
+}
+
+.features {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+}
+.feature {
+  flex: 1;
+  min-width: 200px;
+  max-width: 240px;
+  text-align: left;
+}
+.feature-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-hover);
+  background: var(--accent-soft);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.feature h3 { font-size: 15px; margin-bottom: 6px; }
+.feature p  { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+/* ── ISCRIZIONE CONFERMATA / BENVENUTO ── */
+.page-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32px;
+}
+.page-icon--soft { background: var(--accent-soft); }
+.page-icon--rainbow { background: var(--rainbow); }
+.page-icon svg { width: 38px; height: 38px; }
+
+/* ── BENVENUTO CARDS ── */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.card {
+  flex: 1;
+  min-width: 180px;
+  max-width: 220px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: left;
+}
+.card-icon { font-size: 22px; margin-bottom: 12px; line-height: 1; }
+.card h3   { font-size: 14px; margin-bottom: 6px; }
+.card p    { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .cards { gap: 14px; }
+  .card  { min-width: 140px; }
+}
+
+@media (max-width: 600px) {
+  main { padding: 32px 16px; justify-content: flex-start; padding-top: 48px; }
+  .logo { margin-bottom: 32px; }
+  h1 { font-size: 28px; }
+  p.lead { font-size: 15px; max-width: none; margin-bottom: 32px; }
+  .form { flex-direction: column; align-items: stretch; }
+  .form input, .form button { width: 100%; }
+  .features { flex-direction: column; align-items: center; }
+  .feature { max-width: none; }
+  .page-icon { width: 64px; height: 64px; }
+  .page-icon svg { width: 30px; height: 30px; }
+  .cards { flex-direction: column; align-items: stretch; }
+  .card { max-width: none; }
+  .btn { display: block; text-align: center; }
+  .divider { margin: 36px auto; }
+}

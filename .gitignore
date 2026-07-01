@@ -21,6 +21,7 @@ wp-content/themes/*
 .env
 *.log
 /subscribers.csv
+/static/subscribers.csv
 
 # OS / editor
 .DS_Store
