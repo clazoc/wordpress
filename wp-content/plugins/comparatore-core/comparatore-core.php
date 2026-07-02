@@ -14,7 +14,9 @@ define( 'COMPARATORE_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'COMPARATORE_CORE_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Fase 1: nessuna logica attiva, solo scaffolding.
+ * Fase 1: CPT ab_servizio per la sezione Servizi.
  * Fase 2: includes/class-api-client.php (client REST verso l'API di comparazione).
  * Fase 3: includes/class-oauth-client.php (flow OAuth2 Authorization Code per l'area riservata).
  */
+
+require_once COMPARATORE_CORE_PATH . 'includes/class-servizi-cpt.php';
