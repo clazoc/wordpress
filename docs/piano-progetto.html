@@ -1,0 +1,783 @@
+<title>Piano di progetto — altrabolletta.it</title>
+<style>
+:root {
+  --bg:        #f7faf2;
+  --bg-card:   #ffffff;
+  --ink:       #1f2b1c;
+  --ink-soft:  #5b6b54;
+  --line:      #dde9d2;
+  --accent:    #7ac843;
+  --accent-dk: #408f55;
+  --accent-bg: #eef7e2;
+  --done-bg:   #eef7e2;
+  --done-ink:  #2d7a3a;
+  --todo-bg:   #fff8e1;
+  --todo-ink:  #7a5a00;
+  --manual-bg: #e8f0ff;
+  --manual-ink:#2a4a9e;
+  --warn-bg:   #fff0f0;
+  --warn-ink:  #9e2a2a;
+  --code-bg:   #1f2b1c;
+  --code-ink:  #c8e6b0;
+  --shadow:    0 1px 4px rgba(31,43,28,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #192217;
+    --bg-card:   #22301f;
+    --ink:       #e0edda;
+    --ink-soft:  #8faa84;
+    --line:      #2e4029;
+    --accent:    #99cc66;
+    --accent-dk: #c2e88a;
+    --accent-bg: #1e3019;
+    --done-bg:   #1e3019;
+    --done-ink:  #8fd4a0;
+    --todo-bg:   #2e2510;
+    --todo-ink:  #e0c060;
+    --manual-bg: #162040;
+    --manual-ink:#8ab0f0;
+    --warn-bg:   #2e1010;
+    --warn-ink:  #f08080;
+    --code-bg:   #111a0f;
+    --code-ink:  #c8e6b0;
+    --shadow:    0 1px 4px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="light"] {
+  --bg:#f7faf2;--bg-card:#ffffff;--ink:#1f2b1c;--ink-soft:#5b6b54;--line:#dde9d2;
+  --accent:#7ac843;--accent-dk:#408f55;--accent-bg:#eef7e2;
+  --done-bg:#eef7e2;--done-ink:#2d7a3a;--todo-bg:#fff8e1;--todo-ink:#7a5a00;
+  --manual-bg:#e8f0ff;--manual-ink:#2a4a9e;--warn-bg:#fff0f0;--warn-ink:#9e2a2a;
+  --code-bg:#1f2b1c;--code-ink:#c8e6b0;--shadow:0 1px 4px rgba(31,43,28,.08);
+}
+:root[data-theme="dark"] {
+  --bg:#192217;--bg-card:#22301f;--ink:#e0edda;--ink-soft:#8faa84;--line:#2e4029;
+  --accent:#99cc66;--accent-dk:#c2e88a;--accent-bg:#1e3019;
+  --done-bg:#1e3019;--done-ink:#8fd4a0;--todo-bg:#2e2510;--todo-ink:#e0c060;
+  --manual-bg:#162040;--manual-ink:#8ab0f0;--warn-bg:#2e1010;--warn-ink:#f08080;
+  --code-bg:#111a0f;--code-ink:#c8e6b0;--shadow:0 1px 4px rgba(0,0,0,.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+a { color: var(--accent-dk); }
+a:hover { color: var(--accent); }
+
+/* ── LAYOUT ─────────────────────────────────────────── */
+.page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+  padding: 48px 0 80px;
+}
+
+/* ── TOP BAR ─────────────────────────────────────────── */
+.topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.topbar-brand {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+}
+.topbar-brand span { color: var(--accent); }
+.topbar-meta {
+  font-size: 12px;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.theme-toggle {
+  background: var(--accent-bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+/* ── PAGE TITLE ───────────────────────────────────────── */
+.page-title-block {
+  padding: 40px 0 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 32px;
+  margin-bottom: 0;
+}
+.page-title-block .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-dk);
+  margin-bottom: 10px;
+}
+.page-title-block h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  line-height: 1.2;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+.page-title-block .subtitle {
+  color: var(--ink-soft);
+  font-size: 14px;
+  max-width: 640px;
+}
+
+/* ── TOC ─────────────────────────────────────────────── */
+.toc {
+  position: sticky;
+  top: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.toc-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.toc ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.toc a {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+.toc a:hover { background: var(--accent-bg); color: var(--accent-dk); }
+.toc .toc-h3 { padding-left: 20px; font-size: 12px; }
+.toc-sep { height: 1px; background: var(--line); margin: 8px 0; }
+
+/* ── MAIN CONTENT ────────────────────────────────────── */
+.content { min-width: 0; }
+
+.content section { margin-bottom: 48px; }
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+}
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+}
+.section-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 24px 0 10px;
+  color: var(--ink);
+}
+h3:first-child { margin-top: 0; }
+
+p { margin-bottom: 10px; color: var(--ink-soft); font-size: 14px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── BADGE ───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.badge-done    { background: var(--done-bg);   color: var(--done-ink); }
+.badge-todo    { background: var(--todo-bg);   color: var(--todo-ink); }
+.badge-manual  { background: var(--manual-bg); color: var(--manual-ink); }
+.badge-dev     { background: var(--warn-bg);   color: var(--warn-ink); }
+
+/* ── CHECKLIST ───────────────────────────────────────── */
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  box-shadow: var(--shadow);
+}
+.check-item .ci-icon {
+  font-size: 15px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.check-item .ci-text { flex: 1; }
+.check-item .ci-text strong { color: var(--ink); font-weight: 600; }
+.check-item .ci-text span { color: var(--ink-soft); font-size: 12.5px; }
+.check-item.done   { border-left: 3px solid var(--accent); }
+.check-item.todo   { border-left: 3px solid #e0c060; }
+.check-item.manual { border-left: 3px solid #6080e0; }
+
+/* ── GUIDE BOX ───────────────────────────────────────── */
+.guide {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 16px 0;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.guide-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--accent-bg);
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  user-select: none;
+}
+.guide-header .gh-icon { font-size: 18px; }
+.guide-header .gh-title { font-size: 14px; font-weight: 700; flex: 1; }
+.guide-header .gh-badge { margin-left: auto; }
+.guide-header .gh-arrow { color: var(--ink-soft); font-size: 13px; transition: transform .2s; }
+.guide.open .gh-arrow { transform: rotate(90deg); }
+.guide-body { padding: 18px; display: none; }
+.guide.open .guide-body { display: block; }
+
+.steps { display: flex; flex-direction: column; gap: 12px; margin: 12px 0; }
+.step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-content { font-size: 13.5px; padding-top: 4px; }
+.step-content strong { color: var(--ink); }
+.step-content p { margin-top: 4px; font-size: 13px; }
+
+/* ── CODE ────────────────────────────────────────────── */
+code {
+  font-family: "Menlo", "Consolas", monospace;
+  font-size: 12.5px;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: "Menlo", "Consolas", monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+/* ── INFO BOX ────────────────────────────────────────── */
+.infobox {
+  background: var(--manual-bg);
+  border-left: 3px solid var(--manual-ink);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--manual-ink);
+  margin: 12px 0;
+}
+.warnbox {
+  background: var(--todo-bg);
+  border-left: 3px solid var(--todo-ink);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--todo-ink);
+  margin: 12px 0;
+}
+
+/* ── PHASE PILLS ─────────────────────────────────────── */
+.phase-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.phase-card {
+  flex: 1;
+  min-width: 160px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.phase-card .pc-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+.phase-card .pc-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.phase-card .pc-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 24px; }
+  .toc { position: static; }
+}
+</style>
+
+<div class="topbar">
+  <div class="page topbar-inner">
+    <div class="topbar-brand">altra<span>bolletta</span>.it</div>
+    <div class="topbar-meta">
+      <span>Piano di progetto — Fase 1</span>
+      <button class="theme-toggle" onclick="toggleTheme()">☀ / ☾</button>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-title-block">
+    <div class="eyebrow">Documento operativo</div>
+    <h1>Piano di progetto WordPress</h1>
+    <p class="subtitle">Riepilogo delle attività completate, di quelle ancora da sviluppare, e delle operazioni che dovrai svolgere nel pannello WordPress per mettere online il sito.</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <div class="toc-title">Contenuti</div>
+      <ul>
+        <li><a href="#panoramica">Panoramica fasi</a></li>
+        <div class="toc-sep"></div>
+        <li><a href="#fase1-fatto">Fase 1 — Completato</a></li>
+        <li><a href="#fase1-todo" class="toc-h3">Da completare (dev)</a></li>
+        <div class="toc-sep"></div>
+        <li><a href="#guide">Guide WordPress</a></li>
+        <li><a href="#g-install" class="toc-h3">Configurazione iniziale</a></li>
+        <li><a href="#g-pagine" class="toc-h3">Creare le pagine</a></li>
+        <li><a href="#g-servizi" class="toc-h3">Inserire i servizi</a></li>
+        <li><a href="#g-menu" class="toc-h3">Menu di navigazione</a></li>
+        <li><a href="#g-magazine" class="toc-h3">Articoli magazine</a></li>
+        <li><a href="#g-dev" class="toc-h3">Flusso di sviluppo</a></li>
+        <div class="toc-sep"></div>
+        <li><a href="#fase2">Fase 2 &amp; 3</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="content">
+
+      <!-- PANORAMICA -->
+      <section id="panoramica">
+        <div class="section-header">
+          <span class="section-num">00</span>
+          <h2>Panoramica fasi</h2>
+        </div>
+        <div class="phase-row">
+          <div class="phase-card">
+            <div class="pc-label">Fase 1 — in corso</div>
+            <div class="pc-title">Contenuto pubblico</div>
+            <div class="pc-desc">Homepage, magazine WordPress, sezione servizi, pagine statiche (coming soon, iscrizione).</div>
+          </div>
+          <div class="phase-card">
+            <div class="pc-label">Fase 2 — futura</div>
+            <div class="pc-title">Comparatore</div>
+            <div class="pc-desc">Integrazione API esterna per confronto tariffe luce e gas in tempo reale.</div>
+          </div>
+          <div class="phase-card">
+            <div class="pc-label">Fase 3 — futura</div>
+            <div class="pc-title">Area riservata</div>
+            <div class="pc-desc">Autenticazione OAuth2, profilo utente, salvataggio confronti e alert personalizzati.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FASE 1 COMPLETATO -->
+      <section id="fase1-fatto">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2>Fase 1 — Completato <span class="badge badge-done">✓ dev</span></h2>
+        </div>
+
+        <h3>Ambiente di sviluppo locale</h3>
+        <div class="checklist">
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>Docker Compose</strong> <span>— MariaDB, WordPress+Xdebug, WP-CLI, phpMyAdmin su porta 8081</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>Debug Xdebug</strong> <span>— configurato per VS Code, attivabile via variabile <code>WP_DEBUG</code></span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>WP_HOME / WP_SITEURL</strong> <span>— forza <code>http://localhost:8080</code> via <code>WORDPRESS_CONFIG_EXTRA</code></span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>docs/DEPLOY.md</strong> <span>— guida deploy per register.it e Azure VM con Docker</span></div></div>
+        </div>
+
+        <h3>Tema WordPress (child theme di Blocksy)</h3>
+        <div class="checklist">
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>comparatore-theme</strong> <span>— child theme, registra menu "primary", enqueue parent + child CSS</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>tokens.css</strong> <span>— variabili CSS <code>--ab-*</code> (colori, tipografia, spaziatura)</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>front-page.php</strong> <span>— homepage completamente custom (no Blocksy chrome), assets enqueued direttamente nel template</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>front-page.css + front-page.js</strong> <span>— stili homepage, nav sticky, hamburger mobile responsive</span></div></div>
+        </div>
+
+        <h3>Sezione Servizi</h3>
+        <div class="checklist">
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>CPT ab_servizio</strong> <span>— custom post type nel plugin comparatore-core, con meta box (categoria, anchor, emoji, prezzo, badge FREE, coming soon, email info)</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>4 template pagina</strong> <span>— Servizi index, Privati, Imprese, Società di vendita</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>services.css</strong> <span>— breadcrumb, hero, anchor nav sticky, blocchi alternati, card index, tag prezzo</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>docs/servizi-content.md</strong> <span>— guida contenuti: tutti i 15 servizi con testi e campi già valorizzati</span></div></div>
+        </div>
+
+        <h3>Pagine statiche</h3>
+        <div class="checklist">
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>static/index.html</strong> <span>— coming soon con form Mailchimp integrato e Google Analytics</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>iscrizione-confermata.html</strong> <span>— landing pre double opt-in</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>benvenuto.html</strong> <span>— landing post double opt-in con 3 card</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>CSS/JS condivisi</strong> <span>— font Lato, colori logo, email obfuscation anti-spam</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>OG meta tags</strong> <span>— anteprima social/WhatsApp, favicon SVG con logo "ab"</span></div></div>
+        </div>
+      </section>
+
+      <!-- FASE 1 TODO DEV -->
+      <section id="fase1-todo">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2>Da completare — sviluppo <span class="badge badge-dev">dev</span></h2>
+        </div>
+        <div class="checklist">
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>og-preview.png</strong> <span>— l'immagine professionale che hai condiviso va caricata manualmente via FTP o GitHub nel percorso <code>static/img/og-preview.png</code></span></div></div>
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>Template pagine servizi — enqueue CSS</strong> <span>— verificare che <code>services.css</code> carichi correttamente una volta create le pagine nel pannello WP (stesso problema risolto per la homepage)</span></div></div>
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>Footer WordPress</strong> <span>— il footer della homepage è custom, ma le pagine servizi usano il footer di Blocksy: da uniformare o personalizzare</span></div></div>
+        </div>
+      </section>
+
+      <!-- GUIDE -->
+      <section id="guide">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2>Guide — pannello WordPress <span class="badge badge-manual">⊕ tu</span></h2>
+        </div>
+        <p>Queste sono le operazioni che devi fare direttamente nel pannello WP (<code>http://localhost:8080/wp-admin</code>). Falle in ordine.</p>
+
+        <!-- GUIDA 1 -->
+        <div class="guide open" id="g-install">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">⚙️</span>
+            <span class="gh-title">1 · Configurazione iniziale WordPress</span>
+            <span class="gh-badge badge badge-manual">da fare</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content"><strong>Attiva il plugin Comparatore Core</strong><p>Plugin → Plugin installati → <em>Comparatore Core</em> → Attiva. Questo attiva il custom post type Servizi.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content"><strong>Attiva il tema comparatore-theme</strong><p>Aspetto → Temi → <em>comparatore-theme</em> → Attiva.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content"><strong>Imposta la homepage statica</strong><p>Impostazioni → Lettura → "La tua homepage visualizza" → seleziona <strong>Una pagina statica</strong>. Per ora lascia vuoto — tornerai qui dopo aver creato le pagine.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content"><strong>Imposta il titolo del sito</strong><p>Impostazioni → Generali → Titolo del sito: <code>altrabolletta.it</code> — Tagline: <code>Confronta le offerte luce e gas</code></p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GUIDA 2 -->
+        <div class="guide" id="g-pagine">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">📄</span>
+            <span class="gh-title">2 · Creare le pagine e assegnare i template</span>
+            <span class="gh-badge badge badge-manual">da fare</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <p>Per ogni pagina: Pagine → Aggiungi pagina → compila titolo → nel pannello destro <strong>Attributi pagina → Template</strong> seleziona il template corretto → Pubblica.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <strong>Pagina Homepage</strong>
+                  <p>Titolo: <code>Home</code> · Slug: <code>home</code> · Template: <strong>Homepage Altrabolletta</strong> · Contenuto: lascia vuoto (il template è completamente custom)</p>
+                  <p>Dopo averla creata, vai in <strong>Impostazioni → Lettura</strong> e selezionala come "Pagina iniziale".</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Pagina Servizi (index)</strong>
+                  <p>Titolo: <code>Servizi</code> · Slug: <code>servizi</code> · Template: <strong>Servizi — Index</strong> · Pagina padre: nessuno</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <strong>Pagina Servizi Privati</strong>
+                  <p>Titolo: <code>Servizi per privati</code> · Slug: <code>privati</code> · Template: <strong>Servizi — Privati</strong> · Pagina padre: <strong>Servizi</strong></p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                  <strong>Pagina Servizi Imprese</strong>
+                  <p>Titolo: <code>Servizi per le imprese</code> · Slug: <code>imprese</code> · Template: <strong>Servizi — Imprese</strong> · Pagina padre: <strong>Servizi</strong></p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                  <strong>Pagina Servizi Società</strong>
+                  <p>Titolo: <code>Servizi per società di vendita</code> · Slug: <code>societa</code> · Template: <strong>Servizi — Società</strong> · Pagina padre: <strong>Servizi</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="infobox">I link tra le pagine (es. dalla card "Privati" nell'index alla pagina dettaglio) funzionano automaticamente grazie alla gerarchia Servizi → Privati/Imprese/Societa.</div>
+          </div>
+        </div>
+
+        <!-- GUIDA 3 -->
+        <div class="guide" id="g-servizi">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">📋</span>
+            <span class="gh-title">3 · Inserire i contenuti della sezione Servizi</span>
+            <span class="gh-badge badge badge-manual">da fare</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <p>Tutti i testi sono già scritti in <code>docs/servizi-content.md</code> — aprilo come riferimento mentre lavori nel pannello WP.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content"><strong>Vai su Servizi → Aggiungi servizio</strong><p>La voce "Servizi" appare nel menu laterale del pannello dopo aver attivato il plugin.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Compila ogni servizio</strong>
+                  <p><strong>Titolo</strong> → nome del servizio (es. "Confronto self-service")</p>
+                  <p><strong>Corpo</strong> → incolla i paragrafi dal file .md nell'editor visuale</p>
+                  <p><strong>Meta box "Dettagli servizio"</strong> (colonna destra) → Categoria, Anchor ID, Emoji, badge FREE, Prezzo, Coming soon, Oggetto email info</p>
+                  <p><strong>Attributi pagina → Ordine</strong> → il numero controlla la sequenza dei blocchi nella pagina (1 = primo)</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content"><strong>Pubblica</strong><p>Ogni servizio è un post separato. Puoi modificarlo, riordinarlo o archiviarlo in qualsiasi momento senza toccare il codice.</p></div>
+              </div>
+            </div>
+            <div class="warnbox">Inserisci i servizi nell'ordine corretto fin dall'inizio — l'alternanza sinistra/destra dei blocchi si basa sul numero d'ordine. Imposta Ordine: 1, 2, 3… per ogni categoria separatamente.</div>
+          </div>
+        </div>
+
+        <!-- GUIDA 4 -->
+        <div class="guide" id="g-menu">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">🧭</span>
+            <span class="gh-title">4 · Creare il menu di navigazione</span>
+            <span class="gh-badge badge badge-manual">da fare</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content"><strong>Aspetto → Menu → Crea nuovo menu</strong><p>Nome: <code>Menu principale</code></p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Aggiungi le voci</strong>
+                  <p>Dal pannello sinistro seleziona "Pagine" e aggiungi nell'ordine:</p>
+                  <p>Home · Servizi · (voci magazine/blog che aggiungerai dopo) · Chi siamo · Contatti</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content"><strong>Posizione tema → Menu principale</strong><p>In fondo alla pagina, spunta <strong>Menu principale</strong> sotto "Posizioni tema del display".</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content"><strong>Salva il menu</strong><p>Il menu apparirà nella nav della homepage e nelle pagine che usano il layout Blocksy.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GUIDA 5 -->
+        <div class="guide" id="g-magazine">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">📰</span>
+            <span class="gh-title">5 · Pubblicare articoli per il magazine</span>
+            <span class="gh-badge badge badge-manual">ricorrente</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <p>La homepage mostra automaticamente gli ultimi 3 articoli pubblicati. Non serve fare nulla di speciale — basta pubblicare post normali di WordPress.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content"><strong>Articoli → Aggiungi articolo</strong><p>Scrivi titolo e contenuto nell'editor (puoi usare l'editor a blocchi Gutenberg).</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Imposta immagine in evidenza</strong>
+                  <p>Nel pannello destro → "Immagine in evidenza" → carica o seleziona un'immagine. È quella che appare nella card in homepage. Dimensione consigliata: <strong>800×500px</strong>.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content"><strong>Assegna una categoria</strong><p>Crea categorie tematiche (es. "Mercato energia", "Risparmio bolletta", "Guide") per organizzare il magazine. Pannello destro → Categorie.</p></div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content"><strong>Pubblica</strong><p>L'articolo appare subito in homepage (se è tra i 3 più recenti) e nell'archivio del blog.</p></div>
+              </div>
+            </div>
+            <div class="infobox">Buona pratica SEO: compila sempre la meta description. Se hai installato Yoast SEO o RankMath, comparirà un pannello dedicato in fondo all'editor.</div>
+          </div>
+        </div>
+
+        <!-- GUIDA 6 -->
+        <div class="guide" id="g-dev">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">💻</span>
+            <span class="gh-title">6 · Flusso di sviluppo locale → produzione</span>
+            <span class="gh-badge badge badge-done">riferimento</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <p>Come sincronizzare le modifiche tra sviluppo locale e ambiente di produzione.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <strong>Ricevere modifiche dal repo (dopo una sessione Claude Code)</strong>
+                  <pre>git pull origin claude/awesome-brown-ld4sm6
+docker compose down && docker compose up -d</pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Salvare le tue modifiche locali</strong>
+                  <pre>git add .
+git commit -m "Descrizione modifica"
+git push origin claude/awesome-brown-ld4sm6</pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <strong>Deploy in produzione (da DEPLOY.md)</strong>
+                  <p>Sul server SSH nel percorso del progetto:</p>
+                  <pre>git pull origin main
+docker compose down && docker compose up -d</pre>
+                  <p>Il branch di sviluppo è <code>claude/awesome-brown-ld4sm6</code>. Prima del deploy in produzione, fare merge su <code>main</code>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="warnbox">Il database WordPress (contenuti, pagine, articoli) non è nel repo Git — vive solo nel volume Docker. Per migrare i contenuti da locale a produzione usa un plugin come WP Migrate o esporta/importa via wp-admin.</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- FASE 2 e 3 -->
+      <section id="fase2">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2>Fasi future</h2>
+        </div>
+        <div class="checklist">
+          <div class="check-item todo"><div class="ci-icon">◷</div><div class="ci-text"><strong>Fase 2 — Comparatore</strong> <span>— <code>includes/class-api-client.php</code> nel plugin, integrazione API tariffe, form homepage attivato</span></div></div>
+          <div class="check-item todo"><div class="ci-icon">◷</div><div class="ci-text"><strong>Fase 3 — Area riservata</strong> <span>— <code>includes/class-oauth-client.php</code>, flow OAuth2 Authorization Code, dashboard utente con confronti salvati e alert</span></div></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+function toggleGuide(header) {
+  header.closest('.guide').classList.toggle('open');
+}
+function toggleTheme() {
+  const root = document.documentElement;
+  const cur = root.getAttribute('data-theme');
+  const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  if (!cur) root.setAttribute('data-theme', sys === 'dark' ? 'light' : 'dark');
+  else if (cur === 'dark') root.setAttribute('data-theme', 'light');
+  else root.removeAttribute('data-theme');
+}
+// open guide matching hash
+const h = location.hash;
+if (h) { const g = document.querySelector(h + ' .guide-header'); if (g) g.closest('.guide').classList.add('open'); }
+</script>
