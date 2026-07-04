@@ -8,6 +8,20 @@
 
 defined( 'ABSPATH' ) || exit;
 
+wp_enqueue_style(
+	'comparatore-theme-front-page',
+	get_stylesheet_directory_uri() . '/assets/css/front-page.css',
+	[ 'comparatore-theme-tokens' ],
+	wp_get_theme()->get( 'Version' )
+);
+wp_enqueue_script(
+	'comparatore-theme-front-page',
+	get_stylesheet_directory_uri() . '/assets/js/front-page.js',
+	[],
+	wp_get_theme()->get( 'Version' ),
+	true
+);
+
 get_header();
 ?>
 
