@@ -250,7 +250,6 @@ wp_enqueue_script(
 
 </div>
 
-<?php
 <?php wp_footer(); ?>
 </body>
 </html>
