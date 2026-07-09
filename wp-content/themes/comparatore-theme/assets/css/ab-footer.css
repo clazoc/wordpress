@@ -5,7 +5,7 @@
 	color: #e0e6e0;
 }
 
-.ab-site-footer .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+/* il footer usa il .wrap globale, nessun override necessario */
 
 /* Newsletter strip */
 .ab-footer-newsletter {
@@ -78,7 +78,6 @@
 	.ab-footer-cols { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
-	.ab-site-footer .wrap { padding: 0 16px; }
 	.ab-footer-newsletter { flex-direction: column; align-items: flex-start; padding: 28px 0; }
 	.ab-footer-newsletter-form { width: 100%; }
 	.ab-footer-newsletter-form input { width: auto; flex: 1; }

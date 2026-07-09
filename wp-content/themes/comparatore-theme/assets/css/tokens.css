@@ -3,6 +3,16 @@
  * Valori di riferimento da riportare anche nel Customizer di Blocksy
  * (Global Colors) quando si configura il tema via dashboard.
  */
+/* Layout wrapper globale — usato in tutti i template */
+.wrap {
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 0 48px;
+}
+
+@media (max-width: 900px)  { .wrap { padding: 0 28px; } }
+@media (max-width: 600px)  { .wrap { padding: 0 16px; } }
+
 :root {
 	--ab-ink: #212529;
 	--ab-ink-soft: #5b6b54;

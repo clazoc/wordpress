@@ -5,7 +5,8 @@
  * in <div class="ab-home">, front-page.php lo wrappa sull'intera pagina.
  */
 
-.ab-home .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+/* la nav usa padding più stretto del .wrap globale */
+.ab-home .wrap { padding: 0 24px; }
 
 .ab-home .rainbow-bar { height: 5px; background: var(--ab-rainbow); }
 
@@ -54,7 +55,4 @@
 	.ab-home .ab-nav-inner .ab-menu,
 	.ab-home .ab-nav-inner .ab-nav-actions { display: none; }
 	.ab-home .ab-menu-toggle { display: flex; }
-}
-@media (max-width: 600px) {
-	.ab-home .wrap { padding: 0 16px; }
 }
