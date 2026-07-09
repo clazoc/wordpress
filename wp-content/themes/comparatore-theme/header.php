@@ -2,11 +2,7 @@
 /**
  * Header globale — usato da tutti i template eccetto front-page.php
  * (che ha il proprio shell HTML completo).
- *
- * Wrappa solo la barra nav in .ab-home; il div non abbraccia il contenuto
- * della pagina, quindi gli stili .ab-home restano confinati alla nav.
  */
-
 defined( 'ABSPATH' ) || exit;
 
 $ab_comparatore   = defined( 'AB_COMPARATORE_ATTIVO' )  && AB_COMPARATORE_ATTIVO;
@@ -38,11 +34,12 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 				'container'      => false,
 				'menu_class'     => 'ab-menu',
 				'fallback_cb'    => false,
-				'depth'          => 1,
+				'depth'          => 0,
 			] );
 			?>
 
-			<div class="ab-nav-actions">
+			<div class="ab-nav-right">
+				<?php get_template_part( 'templates/parts/ab-social' ); ?>
 				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
 				<?php endif; ?>
@@ -64,11 +61,11 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 				'container'      => false,
 				'menu_class'     => 'ab-menu',
 				'fallback_cb'    => false,
-				'depth'          => 1,
+				'depth'          => 0,
 			] );
 			?>
 			<?php get_template_part( 'templates/parts/ab-social' ); ?>
-
+			<?php if ( $ab_registrazione || $ab_comparatore ) : ?>
 			<div class="ab-nav-actions">
 				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
@@ -77,6 +74,7 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 				<a class="ab-btn ab-btn-primary" href="<?php echo esc_url( home_url( '/#comparatore' ) ); ?>">Confronta ora</a>
 				<?php endif; ?>
 			</div>
+			<?php endif; ?>
 		</div>
 	</header>
 
