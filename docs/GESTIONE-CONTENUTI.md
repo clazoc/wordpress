@@ -41,12 +41,59 @@ In homepage compare automaticamente un riquadro **"Dal Magazine"** con gli ultim
 
 ### Categorie consigliate
 
-Definisci le categorie che vuoi usare e creale prima di scrivere i contenuti. Alcune idee di partenza:
+Definisci le categorie prima di iniziare a scrivere. Una struttura consigliata:
 
-- **Notizie** — aggiornamenti normativi, comunicati ARERA, nuovi fornitori
-- **Prezzi e tariffe** — analisi prezzi mensili, confronti storici
+**Contenuti editoriali (rivolti ai lettori)**
+- **Mercato e tariffe** — aggiornamenti ARERA, prezzi, indici PUN
+- **Normativa** — decreti, bollettini, regolamenti del settore
 - **Guide** — come leggere la bolletta, come cambiare fornitore, glossario
-- **Curiosità** — storie, retroscena del mercato energetico
+- **Curiosità** — retroscena, storie, approfondimenti sul mondo dell'energia
+
+**Notizie interne (su altrabolletta.it)**
+- **Altrabolletta** — lancio del servizio, aggiornamenti della piattaforma, comunicati, partnership
+
+Tenere separata la categoria "Altrabolletta" permette in futuro di escluderla dalla sezione "Dal Magazine" in homepage, creare una pagina "Press" dedicata o inviare newsletter segmentate.
+
+### Creare una categoria
+
+1. Vai su **Articoli → Categorie**
+2. Nel pannello sinistro compila:
+   - **Nome**: il nome visibile (es. "Mercato e tariffe")
+   - **Slug**: l'identificativo nell'URL, minuscolo senza spazi (es. `mercato-e-tariffe`) — WordPress lo genera automaticamente dal nome, puoi lasciarlo così
+   - **Categoria genitore**: lascia vuoto per categorie di primo livello; scegli una categoria esistente se vuoi creare una sottocategoria
+   - **Descrizione**: facoltativa, appare in alcune visualizzazioni dell'archivio
+3. Clicca **Aggiungi nuova categoria**
+
+### Pagine archivio delle categorie
+
+WordPress crea automaticamente una **pagina archivio** per ogni categoria, senza che tu debba fare nulla. L'URL segue questo schema:
+
+```
+https://altrabolletta.it/category/mercato-e-tariffe/
+https://altrabolletta.it/category/guide/
+https://altrabolletta.it/category/altrabolletta/
+```
+
+Queste pagine mostrano tutti gli articoli di quella categoria in ordine cronologico inverso (il più recente prima) e si aggiornano automaticamente ogni volta che pubblichi un nuovo articolo nella categoria.
+
+**Come aggiungere un archivio categoria al menu di navigazione:**
+
+1. Vai su **Aspetto → Menu**
+2. Nel pannello sinistro, apri la sezione **Categorie**
+3. Seleziona la categoria che vuoi aggiungere e clicca **Aggiungi al menu**
+4. Trascina la voce nella posizione desiderata (anche come sottovoce di "Magazine")
+5. Clicca **Salva menu**
+
+Esempio di struttura menu Magazine con sottovoci:
+```
+Magazine
+├── Mercato e tariffe
+├── Normativa
+├── Guide
+└── Curiosità
+```
+
+> La categoria "Altrabolletta" puoi non aggiungerla al menu principale — raggiungibile comunque tramite URL diretto o da una futura pagina "Press".
 
 ### Modificare o eliminare un articolo
 
