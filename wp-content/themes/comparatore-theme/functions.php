@@ -96,7 +96,7 @@ add_action( 'wp_enqueue_scripts', function () {
 		);
 	}
 
-	if ( is_category() || is_tag() || is_author() || is_archive() ) {
+	if ( is_home() || is_category() || is_tag() || is_author() || is_archive() ) {
 		wp_enqueue_style(
 			'comparatore-theme-archive',
 			get_stylesheet_directory_uri() . '/assets/css/archive.css',
