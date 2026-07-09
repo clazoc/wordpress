@@ -23,22 +23,76 @@ Compatibile con il progetto attuale: un hosting WordPress gestito fornisce già 
 
 Conserva queste credenziali in un posto sicuro (es. un password manager), non vanno mai inserite nel repository Git.
 
-### 2. Caricare tema e plugin custom
+### 2. Prima pubblicazione — caricare tema e plugin
 
-Userai una connessione FTP/SFTP per copiare i nostri file dentro la cartella `wp-content` del sito online.
+Per la prima volta devi copiare le nostre cartelle via FTP/SFTP sul server.
 
-**Opzione consigliata: estensione SFTP per VS Code**
+**Cosa caricare** (solo queste due cartelle, nient'altro):
+```
+wp-content/themes/comparatore-theme/
+wp-content/plugins/comparatore-core/
+```
+
+**Cosa NON caricare:**
+- `wp-content/uploads/` — contiene i media del sito online, sovrascriveresti quelli reali
+- Il core WordPress (`wp-admin/`, `wp-includes/`) — è già fornito da register.it
+- `.env` — non deve mai andare online
+
+---
+
+**Opzione A: estensione SFTP per VS Code (consigliata)**
 
 1. Installa l'estensione **SFTP** (autore: Natizyskunk) da VS Code.
 2. Apri la palette comandi (`Ctrl+Shift+P` / `Cmd+Shift+P`) e cerca "SFTP: Config".
-3. Inserisci host, utente, password e porta forniti da register.it, impostando come `remotePath` la cartella `wp-content` del sito remoto.
-4. Carica manualmente (tasto destro → "Upload") le cartelle:
-   - `wp-content/themes/comparatore-theme`
-   - `wp-content/plugins/comparatore-core`
+3. Si apre un file `sftp.json`: inserisci le credenziali di register.it:
+   ```json
+   {
+     "name": "altrabolletta.it",
+     "host": "ftp.altrabolletta.it",
+     "protocol": "sftp",
+     "port": 22,
+     "username": "il-tuo-utente",
+     "password": "la-tua-password",
+     "remotePath": "/wp-content",
+     "uploadOnSave": false
+   }
+   ```
+   *(host, utente, password e porta ti vengono forniti da register.it nell'email di attivazione)*
+4. Tasto destro sulla cartella `comparatore-theme` nel pannello file → **Upload**
+5. Tasto destro sulla cartella `comparatore-core` → **Upload**
 
-**Alternativa: FileZilla** (se preferisci un client FTP grafico classico) — stessa logica, stesse credenziali, stesse due cartelle da caricare dentro `wp-content/themes` e `wp-content/plugins` del sito remoto.
+**Opzione B: FileZilla**
 
-> Non caricare mai la cartella `wp-content/uploads` del tuo ambiente locale: sul sito online avrà già i suoi contenuti (media caricati da remoto), sovrascriverla creerebbe confusione.
+1. Scarica [FileZilla](https://filezilla-project.org/) se non ce l'hai
+2. Connettiti con le credenziali SFTP di register.it (host, utente, password, porta 22)
+3. Nel pannello di destra (sito remoto) vai in `wp-content/`
+4. Trascina dal pannello di sinistra (locale) le due cartelle: `comparatore-theme` e `comparatore-core`
+
+---
+
+### 2b. Aggiornamenti successivi — come pubblicare le modifiche
+
+Ogni volta che ricevi nuove modifiche dal repository (es. dopo una sessione di sviluppo), il flusso è:
+
+**1. Scarica le modifiche in locale**
+```bash
+git pull origin claude/awesome-brown-ld4sm6
+```
+
+**2. Carica solo i file modificati sul server**
+
+Con l'estensione SFTP di VS Code puoi caricare solo i file che sai essere stati modificati:
+- Tasto destro sul file → **Upload** (carica solo quel file)
+- Tasto destro sulla cartella → **Upload** (sovrascrive tutta la cartella — più sicuro se non sai quali file sono cambiati)
+
+In alternativa, per un aggiornamento completo via FileZilla: trascina di nuovo entrambe le cartelle (sovrascrive tutto il codice, i contenuti WordPress nel database non vengono toccati).
+
+> **Scorciatoia**: se usi l'estensione SFTP, puoi attivare `"uploadOnSave": true` nella config — ogni volta che salvi un file in VS Code, viene caricato automaticamente sul server. Utile durante sessioni di lavoro attive, da disattivare quando non stai lavorando.
+
+**Cosa non viene toccato dagli aggiornamenti:**
+- Il database WordPress (articoli, pagine, impostazioni) — vive solo sul server
+- I media caricati (`wp-content/uploads/`) — non sono nel repo
+- `wp-config.php` — non è nel repo, non viene mai sovrascritto
 
 ### 3. Configurare il sito online come in locale
 
