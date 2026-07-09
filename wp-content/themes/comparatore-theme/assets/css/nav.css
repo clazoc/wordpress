@@ -5,8 +5,8 @@
  * in <div class="ab-home">, front-page.php lo wrappa sull'intera pagina.
  */
 
-/* la nav usa padding più stretto del .wrap globale */
-.ab-home .wrap { padding: 0 24px; }
+/* solo la barra nav usa padding più stretto — non sovrascrive .wrap nel resto della pagina */
+.ab-home .ab-nav .wrap { padding: 0 24px; }
 
 .ab-home .rainbow-bar { height: 5px; background: var(--ab-rainbow); }
 

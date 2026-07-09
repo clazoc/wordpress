@@ -136,8 +136,7 @@
 }
 
 @media (max-width: 600px) {
-	.ab-home .wrap { padding: 0 16px; }
-	.ab-home .ab-hero { padding: 40px 0 40px; }
+.ab-home .ab-hero { padding: 40px 0 40px; }
 	.ab-home .ab-hero h1 { font-size: 28px; }
 	.ab-home .ab-hero p.ab-lead { font-size: 15px; max-width: none; }
 	.ab-home .ab-hero-trust { flex-direction: column; gap: 12px; }
