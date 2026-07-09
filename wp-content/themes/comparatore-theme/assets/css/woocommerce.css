@@ -1,0 +1,171 @@
+/*
+ * Stili WooCommerce — sovrascrive i default di WC con i token --ab-* del sito.
+ * Caricato solo su pagine WooCommerce (shop, prodotto, carrello, checkout, account).
+ */
+
+/* ---- Layout wrapper ---- */
+.woocommerce,
+.woocommerce-page {
+	background: var(--ab-bg);
+}
+
+.woocommerce .woocommerce-notices-wrapper,
+.woocommerce-page .woocommerce-notices-wrapper { max-width: 860px; margin: 0 auto; }
+
+/* Contenitore principale su pagine WC */
+.woocommerce #primary,
+.woocommerce-page #primary {
+	max-width: 860px;
+	margin: 0 auto;
+	padding: 48px 0 72px;
+}
+
+/* ---- Tipografia e colori base ---- */
+.woocommerce a { color: var(--ab-accent-hover); }
+.woocommerce a:hover { color: var(--ab-ink); }
+
+/* ---- Pulsanti ---- */
+.woocommerce .button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce a.button {
+	background: var(--ab-accent) !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 7px !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	padding: 11px 22px !important;
+	cursor: pointer;
+	text-decoration: none;
+	transition: background .15s;
+}
+
+.woocommerce .button:hover,
+.woocommerce button.button:hover,
+.woocommerce a.button:hover {
+	background: var(--ab-accent-hover) !important;
+	color: #fff !important;
+}
+
+.woocommerce .button.alt,
+.woocommerce button.button.alt {
+	background: var(--ab-accent-hover) !important;
+}
+
+/* ---- Messaggi / notice ---- */
+.woocommerce-message,
+.woocommerce-info {
+	border-top-color: var(--ab-accent) !important;
+	background: var(--ab-accent-soft) !important;
+	color: var(--ab-ink) !important;
+}
+
+.woocommerce-error {
+	border-top-color: #e0567e !important;
+}
+
+/* ---- Prodotto singolo ---- */
+.woocommerce div.product .price {
+	color: var(--ab-accent-hover);
+	font-size: 24px;
+	font-weight: 700;
+}
+
+/* ---- Form (checkout, account) ---- */
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select {
+	border: 1px solid var(--ab-line);
+	border-radius: 6px;
+	padding: 10px 14px;
+	font-size: 15px;
+	color: var(--ab-ink);
+	background: #fff;
+	width: 100%;
+	transition: border-color .15s;
+}
+
+.woocommerce form .form-row input.input-text:focus,
+.woocommerce form .form-row textarea:focus,
+.woocommerce form .form-row select:focus {
+	border-color: var(--ab-accent);
+	outline: none;
+}
+
+.woocommerce form .form-row label {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ab-ink);
+	margin-bottom: 4px;
+	display: block;
+}
+
+/* ---- Tabella carrello / ordine ---- */
+.woocommerce table.shop_table {
+	border: 1px solid var(--ab-line);
+	border-radius: 8px;
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	font-size: 14px;
+}
+
+.woocommerce table.shop_table th {
+	background: var(--ab-accent-soft);
+	color: var(--ab-accent-hover);
+	font-weight: 700;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--ab-line);
+}
+
+.woocommerce table.shop_table td {
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--ab-line);
+	color: var(--ab-ink);
+	vertical-align: middle;
+}
+
+.woocommerce table.shop_table tr:last-child td { border-bottom: none; }
+
+/* ---- Totale ordine ---- */
+.woocommerce .order-total .amount {
+	color: var(--ab-accent-hover);
+	font-weight: 700;
+}
+
+/* ---- Pagina account ---- */
+.woocommerce .woocommerce-MyAccount-navigation ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 32px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.woocommerce .woocommerce-MyAccount-navigation li a {
+	display: inline-block;
+	padding: 8px 16px;
+	border-radius: 6px;
+	border: 1px solid var(--ab-line);
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ab-ink);
+	text-decoration: none;
+	background: #fff;
+	transition: border-color .15s, color .15s;
+}
+
+.woocommerce .woocommerce-MyAccount-navigation li.is-active a,
+.woocommerce .woocommerce-MyAccount-navigation li a:hover {
+	border-color: var(--ab-accent);
+	color: var(--ab-accent-hover);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+	.woocommerce #primary { padding: 28px 0 48px; }
+	.woocommerce table.shop_table { display: block; overflow-x: auto; }
+}

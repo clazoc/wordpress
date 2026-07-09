@@ -19,6 +19,12 @@ add_action( 'after_setup_theme', function () {
 	register_nav_menus( [
 		'primary' => __( 'Menu principale', 'comparatore-theme' ),
 	] );
+
+	// Compatibilità WooCommerce: usa i nostri template invece di quelli di default
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
@@ -102,6 +108,15 @@ add_action( 'wp_enqueue_scripts', function () {
 			get_stylesheet_directory_uri() . '/assets/css/archive.css',
 			[ 'comparatore-theme-tokens' ],
 			ab_asset_ver( 'assets/css/archive.css' )
+		);
+	}
+
+	if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
+		wp_enqueue_style(
+			'comparatore-theme-woo',
+			get_stylesheet_directory_uri() . '/assets/css/woocommerce.css',
+			[ 'comparatore-theme-tokens' ],
+			ab_asset_ver( 'assets/css/woocommerce.css' )
 		);
 	}
 
