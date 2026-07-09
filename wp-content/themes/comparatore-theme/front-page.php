@@ -4,6 +4,10 @@
  *
  * Homepage statica (Fase 1): contenuti reali via WordPress (menu, articoli),
  * comparatore e form ancora segnaposto in attesa dell'integrazione Fase 2.
+ *
+ * Feature flags (aggiungere in wp-config.php per attivare):
+ *   define( 'AB_COMPARATORE_ATTIVO',  true );  // mostra il form comparatore + sezioni correlate
+ *   define( 'AB_REGISTRAZIONE_ATTIVA', true );  // mostra Accedi / Area personale
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -21,6 +25,9 @@ wp_enqueue_script(
 	wp_get_theme()->get( 'Version' ),
 	true
 );
+
+$ab_comparatore = defined( 'AB_COMPARATORE_ATTIVO' )  && AB_COMPARATORE_ATTIVO;
+$ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATTIVA;
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -52,9 +59,15 @@ wp_enqueue_script(
 			] );
 			?>
 
+			<?php get_template_part( 'templates/parts/ab-social' ); ?>
+
 			<div class="ab-nav-actions">
+				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
+				<?php endif; ?>
+				<?php if ( $ab_comparatore ) : ?>
 				<a class="ab-btn ab-btn-primary" href="#comparatore">Confronta ora</a>
+				<?php endif; ?>
 			</div>
 
 			<button type="button" class="ab-menu-toggle" aria-expanded="false" aria-controls="ab-mobile-menu">
@@ -74,9 +87,14 @@ wp_enqueue_script(
 			] );
 			?>
 			<div class="ab-nav-actions">
+				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
+				<?php endif; ?>
+				<?php if ( $ab_comparatore ) : ?>
 				<a class="ab-btn ab-btn-primary" href="#comparatore">Confronta ora</a>
+				<?php endif; ?>
 			</div>
+			<?php get_template_part( 'templates/parts/ab-social' ); ?>
 		</div>
 	</header>
 
@@ -93,7 +111,7 @@ wp_enqueue_script(
 				</div>
 			</div>
 
-			<?php if ( defined( 'AB_COMPARATORE_ATTIVO' ) && AB_COMPARATORE_ATTIVO ) : ?>
+			<?php if ( $ab_comparatore ) : ?>
 			<div class="ab-compare-card">
 				<h3>Trova la tua offerta migliore</h3>
 				<p>Bastano pochi dati, nessuna registrazione richiesta.</p>
@@ -163,6 +181,7 @@ wp_enqueue_script(
 		</div>
 	</section>
 
+	<?php if ( $ab_registrazione ) : ?>
 	<section class="ab-section">
 		<div class="wrap">
 			<div class="ab-section-head">
@@ -197,7 +216,9 @@ wp_enqueue_script(
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 
+	<?php if ( $ab_comparatore ) : ?>
 	<section class="ab-section">
 		<div class="wrap">
 			<div class="ab-section-head" style="margin-bottom:32px;">
@@ -212,6 +233,7 @@ wp_enqueue_script(
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 
 	<?php
 	$ab_magazine_query = new WP_Query( [
@@ -250,22 +272,9 @@ wp_enqueue_script(
 	endif;
 	?>
 
-	<section class="ab-section" style="padding-top:0;">
-		<div class="wrap">
-			<div class="ab-newsletter">
-				<div>
-					<h3>Resta aggiornato sul mercato dell'energia</h3>
-					<p>Una email al mese, niente spam: solo le informazioni utili per risparmiare.</p>
-				</div>
-				<form class="ab-newsletter-form" method="post" action="#">
-					<input type="email" name="ab_newsletter_email" placeholder="La tua email" required>
-					<button type="submit">Iscriviti</button>
-				</form>
-			</div>
-		</div>
-	</section>
+</div><!-- .ab-home -->
 
-</div>
+<?php get_template_part( 'templates/parts/ab-footer' ); ?>
 
 <?php wp_footer(); ?>
 </body>

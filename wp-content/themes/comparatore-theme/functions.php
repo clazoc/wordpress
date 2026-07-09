@@ -31,6 +31,13 @@ add_action( 'wp_enqueue_scripts', function () {
 		wp_get_theme()->get( 'Version' )
 	);
 
+	wp_enqueue_style(
+		'comparatore-theme-footer',
+		get_stylesheet_directory_uri() . '/assets/css/ab-footer.css',
+		[ 'comparatore-theme-tokens' ],
+		wp_get_theme()->get( 'Version' )
+	);
+
 	$services_templates = [
 		'templates/page-servizi.php',
 		'templates/page-servizi-privati.php',
