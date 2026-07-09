@@ -253,6 +253,72 @@ L'attivazione richiede una modifica tecnica minima da parte dello sviluppatore (
 
 ---
 
+## Autori
+
+### Aggiungere un nuovo autore
+
+1. Vai su **Utenti → Aggiungi nuovo**
+2. Compila:
+   - **Nome utente** — identificativo univoco, non modificabile dopo la creazione
+   - **Email** — deve essere univoca per ogni utente
+   - **Password** — usa il pulsante "Genera password" e condividila con l'autore in modo sicuro
+   - **Ruolo** — vedi tabella sotto
+3. Clicca **Aggiungi nuovo utente**
+
+### Ruoli disponibili
+
+| Ruolo | Cosa può fare |
+|---|---|
+| **Collaboratore** | Scrive i propri articoli ma non può pubblicarli — serve l'approvazione di un Editore o Amministratore |
+| **Autore** | Scrive, modifica e pubblica i **propri** articoli autonomamente |
+| **Editore** | Scrive, modifica e pubblica articoli **di tutti**, gestisce categorie e tag |
+| **Amministratore** | Accesso completo — riservato a chi gestisce il sito tecnicamente |
+
+Per un redattore esterno che lavora in autonomia → **Autore**.
+Per un caporedattore che supervisiona il lavoro altrui → **Editore**.
+Per chi manda contributi occasionali da approvare → **Collaboratore**.
+
+### Nome visualizzato negli articoli
+
+Per default WordPress mostra il nome utente. Per cambiarlo in "Nome Cognome":
+
+1. **Utenti → tutti gli utenti** → clicca sull'utente
+2. Compila i campi **Nome** e **Cognome**
+3. Nel campo **"Visualizza il nome pubblicamente come"** scegli il formato dal menu a tendina
+4. Clicca **Aggiorna profilo**
+
+### Immagine profilo (avatar)
+
+L'avatar dell'autore si gestisce tramite [Gravatar](https://gravatar.com): l'autore crea un account Gravatar con la stessa email usata in WordPress e carica la sua foto — comparirà automaticamente nel sito.
+
+---
+
+## Stili del testo negli articoli
+
+Gli articoli hanno stili tipografici personalizzati coerenti con il resto del sito. Non è necessario fare nulla di speciale: basta usare i blocchi standard dell'editor e i colori e le proporzioni corretti vengono applicati in automatico.
+
+### Blocchi consigliati e come usarli
+
+| Blocco | Quando usarlo |
+|---|---|
+| **Titolo (H2)** | Sezioni principali dell'articolo |
+| **Titolo (H3)** | Sottosezioni dentro un H2 |
+| **Titolo (H4)** | Dettagli dentro un H3 — usalo con parsimonia |
+| **Paragrafo** | Tutto il testo corrente |
+| **Elenco** | Liste di punti o numerate |
+| **Citazione** | Blocco citazione — ha uno stile con bordo verde a sinistra |
+| **Tabella** | Confronti, dati, elenchi strutturati |
+| **Immagine** | Foto, grafici, screenshot — aggiungi sempre il testo alternativo |
+| **Separatore** | Riga orizzontale per staccare sezioni molto diverse |
+
+### Cosa evitare
+
+- **Non cambiare colore al testo** usando i controlli colore dell'editor — il sistema applica i colori giusti in automatico, sovrascriverli crea incoerenze
+- **Non usare H1** nel corpo dell'articolo — l'H1 è il titolo della pagina, già presente in cima; usare un secondo H1 è scorretto per la SEO
+- **Non incollare testo da Word o Google Docs direttamente** — porta formattazioni nascoste. Usa invece "Incolla come testo normale" (`Ctrl+Shift+V`) e poi riapplica la formattazione nell'editor
+
+---
+
 ## SEO — ottimizzare i contenuti
 
 Se è installato **RankMath**, sotto ogni articolo e pagina compare un pannello "RankMath SEO" con:
