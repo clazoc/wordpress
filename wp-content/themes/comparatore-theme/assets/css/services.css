@@ -8,7 +8,6 @@
 	font-size: 13px;
 	color: var(--ab-ink-soft);
 }
-/* sovrascrive solo il layout flex del .wrap, il padding arriva da tokens.css */
 .ab-breadcrumb .wrap { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding-top: 0; padding-bottom: 0; }
 .ab-breadcrumb a { color: var(--ab-ink-soft); text-decoration: none; }
 .ab-breadcrumb a:hover { color: var(--ab-ink); }
@@ -33,7 +32,6 @@
 	top: 0;
 	z-index: 9;
 }
-/* mantiene padding orizzontale proprio per l'anchor nav (overflow scroll) */
 .ab-service-nav .wrap { display: flex; gap: 4px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; }
 .ab-service-nav a {
 	white-space: nowrap;
@@ -86,7 +84,6 @@
 	border-bottom: 1px solid var(--ab-line);
 }
 .ab-service-block:last-child { border-bottom: none; }
-/* il .wrap porta max-width+padding; qui aggiungiamo solo il grid layout */
 .ab-service-block .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding-top: 0; padding-bottom: 0; }
 .ab-service-block.ab-reverse .wrap { direction: rtl; }
 .ab-service-block.ab-reverse .wrap > * { direction: ltr; }

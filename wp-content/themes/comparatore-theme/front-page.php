@@ -52,6 +52,8 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 			] );
 			?>
 
+			<?php get_template_part( 'templates/parts/ab-social' ); ?>
+
 			<div class="ab-nav-actions">
 				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
