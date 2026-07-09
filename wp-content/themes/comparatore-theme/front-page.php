@@ -48,13 +48,12 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 				'container'      => false,
 				'menu_class'     => 'ab-menu',
 				'fallback_cb'    => false,
-				'depth'          => 1,
+				'depth'          => 0,
 			] );
 			?>
 
-			<?php get_template_part( 'templates/parts/ab-social' ); ?>
-
-			<div class="ab-nav-actions">
+			<div class="ab-nav-right">
+				<?php get_template_part( 'templates/parts/ab-social' ); ?>
 				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
 				<?php endif; ?>
@@ -76,9 +75,11 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 				'container'      => false,
 				'menu_class'     => 'ab-menu',
 				'fallback_cb'    => false,
-				'depth'          => 1,
+				'depth'          => 0,
 			] );
 			?>
+			<?php get_template_part( 'templates/parts/ab-social' ); ?>
+			<?php if ( $ab_registrazione || $ab_comparatore ) : ?>
 			<div class="ab-nav-actions">
 				<?php if ( $ab_registrazione ) : ?>
 				<a class="ab-btn ab-btn-ghost" href="<?php echo esc_url( wp_login_url() ); ?>">Accedi</a>
@@ -87,7 +88,7 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 				<a class="ab-btn ab-btn-primary" href="#comparatore">Confronta ora</a>
 				<?php endif; ?>
 			</div>
-			<?php get_template_part( 'templates/parts/ab-social' ); ?>
+			<?php endif; ?>
 		</div>
 	</header>
 
