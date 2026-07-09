@@ -10,7 +10,7 @@ get_header();
 ?>
 
 <div class="ab-article-outer">
-	<div class="ab-article-wrap">
+	<div class="wrap ab-article-wrap">
 		<?php while ( have_posts() ) : the_post(); ?>
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
