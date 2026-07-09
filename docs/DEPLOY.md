@@ -59,7 +59,30 @@ Se hai già creato pagine/articoli in locale e vuoi portarli sul sito online, le
 
 Per la primissima pubblicazione, in cui probabilmente i contenuti reali li scriverai direttamente online, puoi anche saltare questo passaggio e creare i contenuti finali direttamente sul sito in produzione.
 
-### 5. Verifiche finali
+### 5. Attivare il comparatore (quando sarà pronto — Fase 2)
+
+Il comparatore è controllato da una costante PHP che agisce come interruttore. Finché è spenta, la hero card mostra il modulo newsletter Mailchimp; quando la accendi, mostra il form di comparazione.
+
+**Come attivare:**
+
+1. Accedi al pannello di controllo di register.it → sezione File Manager o usa l'accesso SFTP.
+2. Apri il file `wp-config.php` nella root del sito (stessa cartella di `wp-login.php`).
+3. Prima della riga `/* That's all, stop editing! */`, aggiungi:
+   ```php
+   define( 'AB_COMPARATORE_ATTIVO', true );
+   ```
+4. Salva il file. La home in produzione mostrerà immediatamente il comparatore.
+
+**Come testarlo in locale prima:**
+Nel file `docker-compose.yml`, sotto `WORDPRESS_CONFIG_EXTRA`, aggiungi:
+```yaml
+define( 'AB_COMPARATORE_ATTIVO', true );
+```
+Poi `docker compose down && docker compose up -d` per applicare la modifica.
+
+**Come tornare indietro:** rimuovi quella riga da `wp-config.php` (o cambia `true` in `false`): la newsletter ricompare immediatamente, nessuna altra modifica richiesta.
+
+### 6. Verifiche finali
 
 - Controlla che il certificato **SSL** sia attivo (di solito automatico su hosting gestiti; verifica che il sito risponda su `https://`).
 - Verifica che **Impostazioni → Generali** abbia l'URL del sito corretto (`https://tuodominio.it`).
