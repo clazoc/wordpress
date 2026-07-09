@@ -25,32 +25,54 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 .ab-home .ab-nav-right { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
 .ab-home .ab-nav-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
 
-/* Dropdown submenu */
-.ab-home .ab-menu li { position: relative; }
-.ab-home .ab-menu .sub-menu {
+/* Dropdown submenu — desktop only */
+.ab-home .ab-nav-inner .ab-menu li { position: relative; }
+.ab-home .ab-nav-inner .ab-menu .sub-menu {
 	display: none;
 	position: absolute;
-	top: calc(100% + 8px);
+	top: 100%;          /* no gap: padding-top bridges the space */
 	left: 0;
 	min-width: 200px;
+	padding-top: 8px;   /* bridged gap so mouse doesn't fall off */
+	z-index: 100;
+}
+.ab-home .ab-nav-inner .ab-menu .sub-menu > ul,
+.ab-home .ab-nav-inner .ab-menu .sub-menu {
+	/* inner list styles */
+}
+/* the actual visible box lives on the ul inside the positioned shell */
+.ab-home .ab-nav-inner .ab-menu li > .sub-menu {
+	list-style: none;
+	margin: 0;
 	background: #fff;
 	border: 1px solid var(--ab-line);
 	border-radius: 8px;
 	box-shadow: 0 4px 16px rgba(0,0,0,.08);
 	padding: 6px 0;
-	z-index: 100;
 	flex-direction: column;
 	gap: 0;
 }
-.ab-home .ab-menu li:hover > .sub-menu,
-.ab-home .ab-menu li:focus-within > .sub-menu { display: flex; }
-.ab-home .ab-menu .sub-menu a {
+.ab-home .ab-nav-inner .ab-menu li:hover > .sub-menu,
+.ab-home .ab-nav-inner .ab-menu li:focus-within > .sub-menu { display: flex; }
+.ab-home .ab-nav-inner .ab-menu .sub-menu li { position: static; }
+.ab-home .ab-nav-inner .ab-menu .sub-menu a {
 	display: block;
 	padding: 9px 16px;
 	font-size: 14px;
 	white-space: nowrap;
+	color: var(--ab-ink-soft);
 }
-.ab-home .ab-menu .sub-menu a:hover { background: var(--ab-accent-soft); }
+.ab-home .ab-nav-inner .ab-menu .sub-menu a:hover {
+	background: var(--ab-accent-soft);
+	color: var(--ab-ink);
+}
+
+/* Arrow indicator on parent items */
+.ab-home .ab-nav-inner .ab-menu li:has(> .sub-menu) > a::after {
+	content: ' ▾';
+	font-size: 10px;
+	opacity: .6;
+}
 
 .ab-home .ab-btn {
 	display: inline-block;
@@ -71,17 +93,61 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 }
 .ab-home .ab-mobile-menu {
 	display: none;
-	flex-direction: column; gap: 20px;
-	padding: 20px 24px 28px;
+	flex-direction: column; gap: 0;
 	border-top: 1px solid var(--ab-line);
 	background: #fff;
 }
 .ab-home .ab-mobile-menu.is-open { display: flex; }
-.ab-home .ab-mobile-menu .ab-menu { flex-direction: column; gap: 16px; }
-.ab-home .ab-mobile-menu .ab-nav-actions { flex-wrap: wrap; }
+
+/* Mobile menu links */
+.ab-home .ab-mobile-menu .ab-menu { flex-direction: column !important; gap: 0 !important; padding: 8px 0; }
+.ab-home .ab-mobile-menu .ab-menu > li { border-bottom: 1px solid var(--ab-line); }
+.ab-home .ab-mobile-menu .ab-menu > li:last-child { border-bottom: none; }
+.ab-home .ab-mobile-menu .ab-menu > li > a {
+	display: block;
+	padding: 13px 24px;
+	font-size: 15px;
+	font-weight: 500;
+	color: var(--ab-ink);
+}
+
+/* Mobile accordion toggle button */
+.ab-submenu-toggle {
+	display: flex; align-items: center; justify-content: center;
+	position: absolute; top: 0; right: 0;
+	width: 52px; height: 48px;
+	background: none; border: none; cursor: pointer;
+	color: var(--ab-ink-soft); font-size: 14px;
+	transition: transform .2s;
+}
+.ab-submenu-toggle[aria-expanded="true"] { transform: rotate(180deg); }
+.ab-home .ab-mobile-menu .ab-menu > li { position: relative; }
+.ab-home .ab-mobile-menu .ab-menu > li > a { padding-right: 52px; }
+
+/* Mobile sub-menu — accordion, hidden by default */
+.ab-home .ab-mobile-menu .sub-menu {
+	display: none !important;
+	flex-direction: column !important;
+	background: var(--ab-accent-soft);
+	padding: 4px 0 8px;
+	list-style: none;
+	margin: 0;
+}
+.ab-home .ab-mobile-menu .sub-menu.is-open { display: flex !important; }
+.ab-home .ab-mobile-menu .sub-menu a {
+	display: block;
+	padding: 10px 24px 10px 36px;
+	font-size: 14px;
+	color: var(--ab-ink-soft);
+}
+.ab-home .ab-mobile-menu .sub-menu a:hover { color: var(--ab-ink); }
+
+/* Mobile social + actions */
+.ab-home .ab-mobile-menu .ab-social-links { padding: 16px 24px 0; }
+.ab-home .ab-mobile-menu .ab-nav-actions { flex-wrap: wrap; padding: 16px 24px 24px; gap: 10px; }
 
 @media (max-width: 900px) {
 	.ab-home .ab-nav-inner .ab-menu,
-	.ab-home .ab-nav-inner .ab-nav-right { display: none; }
+	.ab-home .ab-nav-inner .ab-nav-right { display: none !important; }
 	.ab-home .ab-menu-toggle { display: flex; }
 }
