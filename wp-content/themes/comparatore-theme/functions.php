@@ -48,6 +48,15 @@ add_action( 'wp_enqueue_scripts', function () {
 		ab_asset_ver( 'assets/css/ab-footer.css' )
 	);
 
+	if ( is_singular( 'post' ) || is_category() || is_tag() || is_archive() ) {
+		wp_enqueue_style(
+			'comparatore-theme-content',
+			get_stylesheet_directory_uri() . '/assets/css/content.css',
+			[ 'comparatore-theme-tokens' ],
+			ab_asset_ver( 'assets/css/content.css' )
+		);
+	}
+
 	$services_templates = [
 		'templates/page-servizi.php',
 		'templates/page-servizi-privati.php',

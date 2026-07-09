@@ -1,0 +1,173 @@
+/*
+ * Stili per il contenuto degli articoli e delle pagine archivio.
+ * Agisce su .entry-content generato da Blocksy, sovrascrive solo
+ * la tipografia per coerenza con i token --ab-* del sito.
+ */
+
+/* ---- Titoli nel corpo articolo ---- */
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5 {
+	color: var(--ab-ink);
+	line-height: 1.25;
+	letter-spacing: -0.3px;
+	margin-top: 2em;
+	margin-bottom: 0.6em;
+}
+.entry-content h2 { font-size: 26px; letter-spacing: -0.4px; }
+.entry-content h3 { font-size: 20px; }
+.entry-content h4 { font-size: 17px; }
+.entry-content h5 { font-size: 15px; }
+
+/* primo titolo h2 nell'articolo: meno margine sopra */
+.entry-content > h2:first-child,
+.entry-content > h3:first-child {
+	margin-top: 0.5em;
+}
+
+/* ---- Paragrafi e testo ---- */
+.entry-content p {
+	color: var(--ab-ink);
+	font-size: 16px;
+	line-height: 1.75;
+	margin-bottom: 1.2em;
+}
+
+/* ---- Link nel testo ---- */
+.entry-content a {
+	color: var(--ab-accent-hover);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+.entry-content a:hover { color: var(--ab-ink); }
+
+/* ---- Liste ---- */
+.entry-content ul,
+.entry-content ol {
+	padding-left: 1.5em;
+	margin-bottom: 1.2em;
+}
+.entry-content li {
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--ab-ink);
+	margin-bottom: 0.35em;
+}
+.entry-content ul li::marker { color: var(--ab-accent); }
+
+/* ---- Blockquote ---- */
+.entry-content blockquote {
+	border-left: 4px solid var(--ab-accent);
+	margin: 1.8em 0;
+	padding: 0.8em 1.2em;
+	background: var(--ab-accent-soft);
+	border-radius: 0 6px 6px 0;
+}
+.entry-content blockquote p {
+	margin: 0;
+	font-style: italic;
+	color: var(--ab-ink-soft);
+	font-size: 15px;
+}
+
+/* ---- Codice inline ---- */
+.entry-content code {
+	font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+	font-size: 13px;
+	background: var(--ab-accent-soft);
+	color: var(--ab-accent-hover);
+	padding: 2px 6px;
+	border-radius: 4px;
+}
+
+/* ---- Tabelle ---- */
+.entry-content table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 14px;
+	margin-bottom: 1.5em;
+}
+.entry-content th {
+	background: var(--ab-accent-soft);
+	color: var(--ab-accent-hover);
+	font-weight: 700;
+	text-align: left;
+	padding: 10px 14px;
+	border-bottom: 2px solid var(--ab-accent);
+}
+.entry-content td {
+	padding: 9px 14px;
+	border-bottom: 1px solid var(--ab-line);
+	color: var(--ab-ink);
+	vertical-align: top;
+}
+.entry-content tr:last-child td { border-bottom: none; }
+
+/* ---- Separatore orizzontale ---- */
+.entry-content hr {
+	border: none;
+	border-top: 1px solid var(--ab-line);
+	margin: 2em 0;
+}
+
+/* ---- Immagini ---- */
+.entry-content img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+.entry-content figure { margin: 1.5em 0; }
+.entry-content figcaption {
+	font-size: 13px;
+	color: var(--ab-ink-soft);
+	text-align: center;
+	margin-top: 8px;
+}
+
+/* ---- Intestazione articolo (titolo + meta) ---- */
+.ab-article-header { margin-bottom: 36px; }
+.ab-article-header h1 {
+	font-size: 34px;
+	line-height: 1.2;
+	letter-spacing: -0.5px;
+	color: var(--ab-ink);
+	margin: 0 0 14px;
+}
+.ab-article-meta {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	font-size: 13px;
+	color: var(--ab-ink-soft);
+	flex-wrap: wrap;
+}
+.ab-article-cat {
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .6px;
+	color: var(--ab-accent-hover);
+	background: var(--ab-accent-soft);
+	padding: 3px 10px;
+	border-radius: 12px;
+}
+
+/* ---- Layout articolo ---- */
+.ab-article-wrap {
+	max-width: 740px;
+	margin: 0 auto;
+	padding: 48px 24px 72px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+	.entry-content h2 { font-size: 22px; }
+	.entry-content h3 { font-size: 18px; }
+	.entry-content p,
+	.entry-content li { font-size: 15px; }
+	.ab-article-header h1 { font-size: 26px; }
+	.ab-article-wrap { padding: 28px 16px 48px; }
+	.entry-content table { display: block; overflow-x: auto; }
+}
