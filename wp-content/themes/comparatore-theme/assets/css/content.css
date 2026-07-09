@@ -154,6 +154,35 @@
 	border-radius: 12px;
 }
 
+/* ---- Immagine in evidenza ---- */
+.ab-article-outer {
+	background: var(--ab-bg);
+}
+.ab-article-thumb {
+	margin: 0 0 36px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.ab-article-thumb img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* ---- Link "Torna al Magazine" ---- */
+.ab-article-footer {
+	margin-top: 48px;
+	padding-top: 24px;
+	border-top: 1px solid var(--ab-line);
+}
+.ab-article-back {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--ab-accent-hover);
+	text-decoration: none;
+}
+.ab-article-back:hover { color: var(--ab-ink); }
+
 /* ---- Layout articolo ---- */
 .ab-article-wrap {
 	max-width: 740px;

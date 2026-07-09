@@ -17,7 +17,8 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 .ab-home .ab-nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
 .ab-home .ab-logo { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; color: var(--ab-ink); text-decoration: none; }
 .ab-home .ab-logo span { color: var(--ab-accent-bright); }
-.ab-home .ab-menu { display: flex; gap: 32px; font-size: 15px; font-weight: 500; color: var(--ab-ink-soft); list-style: none; margin: 0; padding: 0; }
+.ab-home .ab-menu { display: flex !important; gap: 32px; font-size: 15px; font-weight: 500; color: var(--ab-ink-soft); list-style: none; margin: 0; padding: 0; }
+.ab-home .ab-menu li { list-style: none !important; }
 .ab-home .ab-menu li { margin: 0; }
 .ab-home .ab-menu a { color: inherit; text-decoration: none; }
 .ab-home .ab-menu a:hover { color: var(--ab-ink); }
