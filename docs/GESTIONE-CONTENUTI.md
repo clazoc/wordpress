@@ -145,36 +145,93 @@ Vai su **Servizi**, trascina i servizi nell'ordine che vuoi (se hai un plugin di
 
 ## Le pagine
 
-Le pagine contengono i contenuti statici del sito che non cambiano frequentemente: Home, Chi siamo, Contatti, Privacy Policy, ecc.
+Le pagine contengono i contenuti statici del sito. Alcune hanno un template PHP che genera il contenuto automaticamente; altre vanno scritte nell'editor.
 
-### Pagine già presenti
+> **Regola generale**: i file PHP del tema devono essere già presenti sul server (caricati via FTP) prima di creare le pagine che li usano. Se crei la pagina prima di caricare il tema, WordPress non trova il template e usa quello di default.
 
-Queste pagine vanno create a mano in WP admin (Pagine → Aggiungi nuova), ma il loro **contenuto viene popolato automaticamente** dal template PHP — non serve scrivere nulla nell'editor.
+---
 
-> **Importante**: i template PHP devono essere già presenti sul server (caricati via FTP) prima di creare le pagine, altrimenti WordPress non troverà il template corretto.
+### La pagina Magazine (`/magazine`)
 
-| Pagina | Slug | Template da assegnare | Pagina genitore |
-|---|---|---|---|
-| Home | `home` o radice | Homepage Altrabolletta | — |
-| Servizi | `servizi` | Servizi — Index | — |
-| Servizi / Privati | `privati` | Servizi — Privati | Servizi |
-| Servizi / Imprese | `imprese` | Servizi — Imprese | Servizi |
-| Servizi / Società | `societa` | Servizi — Società di vendita | Servizi |
+La pagina `/magazine` non è una pagina normale: è la **pagina degli articoli** di WordPress. Non ha un template dedicato — mostra automaticamente tutti gli articoli pubblicati.
 
-Il template si imposta nel pannello destro → **Attributi pagina → Template**. La pagina genitore si imposta nello stesso pannello.
+**Come configurarla (una volta sola):**
 
-### Pagine da creare
+1. **Pagine → Aggiungi nuova**
+   - Titolo: `Magazine`
+   - Slug: `magazine`
+   - Template: *Pagina predefinita*
+   - Lascia il contenuto vuoto
+   - Clicca **Pubblica**
 
-Queste pagine devono essere create con template **"Pagina predefinita"** e contenuto scritto direttamente nell'editor:
+2. **Impostazioni → Lettura**
+   - "La tua homepage mostra" → seleziona **"Una pagina statica"**
+   - **Homepage**: scegli la pagina `Home`
+   - **Pagina degli articoli**: scegli la pagina `Magazine`
+   - Clicca **Salva modifiche**
 
-- **Chi siamo** (slug: `chi-siamo`)
-- **Come funziona** (slug: `come-funziona`)
-- **Contatti** (slug: `contatti`)
-- **Privacy Policy** (slug: `privacy-policy`) — richiesta per legge
-- **Cookie Policy** (slug: `cookie-policy`) — richiesta per legge
-- **Note legali** (slug: `note-legali`)
+Da questo momento `/magazine` mostra tutti gli articoli con il layout del sito. La pagina si aggiorna automaticamente ogni volta che pubblichi un nuovo articolo.
 
-> **Suggerimento**: per Privacy Policy e Cookie Policy usa i testi generati da **Iubenda** (il plugin già previsto nel progetto): crea l'account su iubenda.com, genera i documenti per altrabolletta.it e incollali nelle pagine corrispondenti.
+---
+
+### Le pagine Servizi
+
+Le pagine Servizi hanno template PHP dedicati che generano il contenuto automaticamente leggendo i servizi inseriti nel pannello. **Non scrivere nulla nell'editor** — il contenuto verrebbe ignorato.
+
+**Ordine di creazione consigliato** (prima i genitori, poi i figli):
+
+#### 1. Pagina Servizi principale
+
+1. **Pagine → Aggiungi nuova**
+2. Titolo: `Servizi` — slug: `servizi`
+3. Pannello destro → **Attributi pagina → Template** → seleziona **Servizi — Index**
+4. Lascia "Pagina genitore" su *Nessuno*
+5. Pubblica
+
+#### 2. Sottopagina Privati
+
+1. **Pagine → Aggiungi nuova**
+2. Titolo: `Privati` — slug: `privati`
+3. Template: **Servizi — Privati**
+4. Pagina genitore: **Servizi**
+5. Pubblica → URL risultante: `/servizi/privati/`
+
+#### 3. Sottopagina Imprese
+
+1. **Pagine → Aggiungi nuova**
+2. Titolo: `Imprese` — slug: `imprese`
+3. Template: **Servizi — Imprese**
+4. Pagina genitore: **Servizi**
+5. Pubblica → URL risultante: `/servizi/imprese/`
+
+#### 4. Sottopagina Società di vendita
+
+1. **Pagine → Aggiungi nuova**
+2. Titolo: `Società` — slug: `societa` (senza accento)
+3. Template: **Servizi — Società di vendita**
+4. Pagina genitore: **Servizi**
+5. Pubblica → URL risultante: `/servizi/societa/`
+
+> **Dove si trova il campo Template?** Nel pannello laterale destro dell'editor, sotto la sezione "Attributi pagina" (potrebbe essere necessario espanderla cliccando sul titolo). Se non vedi questa sezione, vai su **Opzioni → Attributi pagina** (icona ⋮ in alto a destra).
+
+---
+
+### Pagine da creare con contenuto libero
+
+Queste pagine usano il template standard di WordPress e il contenuto va scritto nell'editor:
+
+| Pagina | Slug | Note |
+|---|---|---|
+| Chi siamo | `chi-siamo` | Descrizione del progetto e del team |
+| Come funziona | `come-funziona` | Spiegazione del servizio |
+| Contatti | `contatti` | Form contatto o informazioni |
+| Privacy Policy | `privacy-policy` | Obbligatoria per legge |
+| Cookie Policy | `cookie-policy` | Obbligatoria per legge |
+| Note legali | `note-legali` | Termini di servizio |
+
+> **Suggerimento**: per Privacy Policy e Cookie Policy usa i testi generati da **Iubenda**: crea l'account su iubenda.com, genera i documenti per altrabolletta.it e incollali nelle pagine corrispondenti.
+
+---
 
 ### Modificare una pagina
 
