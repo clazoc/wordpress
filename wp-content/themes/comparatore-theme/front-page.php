@@ -94,6 +94,7 @@ wp_enqueue_script(
 				</div>
 			</div>
 
+			<?php if ( defined( 'AB_COMPARATORE_ATTIVO' ) && AB_COMPARATORE_ATTIVO ) : ?>
 			<div class="ab-compare-card">
 				<h3>Trova la tua offerta migliore</h3>
 				<p>Bastano pochi dati, nessuna registrazione richiesta.</p>
@@ -113,6 +114,23 @@ wp_enqueue_script(
 				<button class="ab-btn ab-btn-primary" disabled>Vedi le offerte migliori</button>
 				<p class="ab-compare-note">Confronto gratuito · risultati in meno di 1 minuto<br>(disponibile a breve)</p>
 			</div>
+			<?php else : ?>
+			<div class="ab-compare-card">
+				<h3>Resta aggiornato</h3>
+				<p>Stiamo costruendo qualcosa di diverso: zero provvigioni, zero chiamate, confronto trasparente tra tutti i fornitori.</p>
+				<form action="https://altrabolletta.us16.list-manage.com/subscribe/post?u=5625d9c767dfd6244be43631e&amp;id=d30f8b093e&amp;f_id=00932be0f0" method="post" class="ab-hero-newsletter">
+					<div class="ab-field">
+						<label for="ab-hero-email">La tua email</label>
+						<input type="email" id="ab-hero-email" name="EMAIL" placeholder="nome@esempio.it" required>
+					</div>
+					<div style="position:absolute;left:-5000px" aria-hidden="true">
+						<input type="text" name="b_5625d9c767dfd6244be43631e_d30f8b093e" tabindex="-1" value="">
+					</div>
+					<button type="submit" name="subscribe" class="ab-btn ab-btn-primary">Avvisami al lancio</button>
+					<p class="ab-compare-note">Niente spam — solo un'email il giorno del lancio.</p>
+				</form>
+			</div>
+			<?php endif; ?>
 		</div>
 	</section>
 

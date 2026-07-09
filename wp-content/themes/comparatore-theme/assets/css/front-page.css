@@ -63,6 +63,7 @@
 }
 .ab-home .ab-compare-card .ab-btn-primary { width: 100%; padding: 13px; font-size: 15px; margin-top: 6px; border-radius: 8px; text-align: center; border: none; }
 .ab-home .ab-compare-note { font-size: 12px; color: var(--ab-ink-soft); text-align: center; margin-top: 14px; }
+.ab-home .ab-hero-newsletter .ab-btn-primary { width: 100%; padding: 13px; font-size: 15px; margin-top: 6px; border-radius: 8px; text-align: center; border: none; cursor: pointer; }
 
 .ab-home section.ab-section { padding: 72px 0; }
 .ab-home .ab-section-head { max-width: 620px; margin: 0 auto 44px; text-align: center; }
