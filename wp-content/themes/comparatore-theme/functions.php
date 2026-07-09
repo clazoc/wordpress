@@ -81,6 +81,21 @@ add_action( 'wp_enqueue_scripts', function () {
 		);
 	}
 
+	if ( is_page() ) {
+		wp_enqueue_style(
+			'comparatore-theme-page',
+			get_stylesheet_directory_uri() . '/assets/css/page.css',
+			[ 'comparatore-theme-tokens' ],
+			ab_asset_ver( 'assets/css/page.css' )
+		);
+		wp_enqueue_style(
+			'comparatore-theme-content',
+			get_stylesheet_directory_uri() . '/assets/css/content.css',
+			[ 'comparatore-theme-tokens' ],
+			ab_asset_ver( 'assets/css/content.css' )
+		);
+	}
+
 	if ( is_category() || is_tag() || is_author() || is_archive() ) {
 		wp_enqueue_style(
 			'comparatore-theme-archive',
