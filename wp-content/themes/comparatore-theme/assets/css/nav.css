@@ -15,6 +15,7 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 	border-bottom: 1px solid var(--ab-line);
 }
 .ab-home .ab-nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+.ab-home .ab-nav-inner .ab-menu { margin: 0 auto; } /* centro il menu principale */
 .ab-home .ab-logo { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; color: var(--ab-ink); text-decoration: none; }
 .ab-home .ab-logo span { color: var(--ab-accent-bright); }
 .ab-home .ab-menu { display: flex !important; gap: 32px; font-size: 15px; font-weight: 500; color: var(--ab-ink-soft); list-style: none; margin: 0; padding: 0; }
@@ -117,7 +118,7 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 	position: absolute; top: 0; right: 0;
 	width: 52px; height: 48px;
 	background: none; border: none; cursor: pointer;
-	color: var(--ab-ink-soft); font-size: 14px;
+	color: var(--ab-ink-soft); font-size: 20px;
 	transition: transform .2s;
 }
 .ab-submenu-toggle[aria-expanded="true"] { transform: rotate(180deg); }
@@ -143,7 +144,7 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 .ab-home .ab-mobile-menu .sub-menu a:hover { color: var(--ab-ink); }
 
 /* Mobile social + actions */
-.ab-home .ab-mobile-menu .ab-social-links { padding: 16px 24px 0; }
+.ab-home .ab-mobile-menu .ab-social-links { padding: 16px 24px 24px; }
 .ab-home .ab-mobile-menu .ab-nav-actions { flex-wrap: wrap; padding: 16px 24px 24px; gap: 10px; }
 
 @media (max-width: 900px) {
