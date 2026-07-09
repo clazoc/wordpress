@@ -30,10 +30,10 @@ defined( 'ABSPATH' ) || exit;
 			<div class="ab-footer-col">
 				<h4 class="ab-footer-col-title">Altrabolletta.it</h4>
 				<p class="ab-footer-legal">
-					Altrabolletta.it è un progetto di<br>
-					<strong>[Ragione Sociale S.r.l.]</strong><br>
-					P.IVA / C.F. [00000000000]<br>
-					Via [Indirizzo], [CAP] [Città]
+					altrabolletta.it è un progetto di<br>
+					<strong>altrabolletta S.r.l.</strong><br>
+					P.IVA / C.F. 04470590235<br>
+					Via XXV Aprile, 3 - 37030 Lavagno (VR)
 				</p>
 				<ul class="ab-footer-links">
 					<li><a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>">Privacy Policy</a></li>
