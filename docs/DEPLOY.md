@@ -59,30 +59,36 @@ Se hai già creato pagine/articoli in locale e vuoi portarli sul sito online, le
 
 Per la primissima pubblicazione, in cui probabilmente i contenuti reali li scriverai direttamente online, puoi anche saltare questo passaggio e creare i contenuti finali direttamente sul sito in produzione.
 
-### 5. Attivare il comparatore (quando sarà pronto — Fase 2)
+### 5. Personalizzare footer e profili social
 
-Il comparatore è controllato da una costante PHP che agisce come interruttore. Finché è spenta, la hero card mostra il modulo newsletter Mailchimp; quando la accendi, mostra il form di comparazione.
+Il footer è globale (compare su tutte le pagine). Dopo aver caricato i file via FTP, personalizza:
 
-**Come attivare:**
-
-1. Accedi al pannello di controllo di register.it → sezione File Manager o usa l'accesso SFTP.
-2. Apri il file `wp-config.php` nella root del sito (stessa cartella di `wp-login.php`).
-3. Prima della riga `/* That's all, stop editing! */`, aggiungi:
-   ```php
-   define( 'AB_COMPARATORE_ATTIVO', true );
-   ```
-4. Salva il file. La home in produzione mostrerà immediatamente il comparatore.
-
-**Come testarlo in locale prima:**
-Nel file `docker-compose.yml`, sotto `WORDPRESS_CONFIG_EXTRA`, aggiungi:
-```yaml
-define( 'AB_COMPARATORE_ATTIVO', true );
+**Dati legali** — apri `wp-content/themes/comparatore-theme/templates/parts/ab-footer.php` e sostituisci i segnaposto:
 ```
-Poi `docker compose down && docker compose up -d` per applicare la modifica.
+[Ragione Sociale S.r.l.]   →  nome legale della società
+[00000000000]              →  P.IVA / Codice Fiscale
+[Indirizzo], [CAP] [Città] →  sede legale
+```
 
-**Come tornare indietro:** rimuovi quella riga da `wp-config.php` (o cambia `true` in `false`): la newsletter ricompare immediatamente, nessuna altra modifica richiesta.
+**Profili social** — apri `wp-content/themes/comparatore-theme/templates/parts/ab-social.php` e aggiorna gli URL nell'array `$ab_socials`. Lo stesso file alimenta sia l'header della homepage che la colonna social nel footer.
 
-### 6. Verifiche finali
+### 6. Attivare comparatore e area registrazione (feature flags)
+
+Due costanti in `wp-config.php` controllano le sezioni non ancora attive. Aggiungile prima di `/* That's all, stop editing! */`:
+
+```php
+// Fase 2 — attiva: hero card comparatore, "Confronta ora" in header, sezione fornitori
+define( 'AB_COMPARATORE_ATTIVO', true );
+
+// Fase 3 — attiva: "Accedi" in header, sezione piani Free/Premium
+define( 'AB_REGISTRAZIONE_ATTIVA', true );
+```
+
+Puoi aggiungere solo quella che serve, quando serve. Per disattivare: rimuovi la riga o cambia `true` in `false`.
+
+**Test in locale:** aggiungi le stesse righe in `docker-compose.yml` sotto `WORDPRESS_CONFIG_EXTRA`, poi `docker compose down && docker compose up -d`.
+
+### 7. Verifiche finali
 
 - Controlla che il certificato **SSL** sia attivo (di solito automatico su hosting gestiti; verifica che il sito risponda su `https://`).
 - Verifica che **Impostazioni → Generali** abbia l'URL del sito corretto (`https://tuodominio.it`).

@@ -424,6 +424,8 @@ pre {
         <li><a href="#g-menu" class="toc-h3">Menu di navigazione</a></li>
         <li><a href="#g-magazine" class="toc-h3">Articoli magazine</a></li>
         <li><a href="#g-dev" class="toc-h3">Flusso di sviluppo</a></li>
+        <li><a href="#g-footer" class="toc-h3">Footer e social</a></li>
+        <li><a href="#g-flags" class="toc-h3">Attivare comparatore / registrazione</a></li>
         <div class="toc-sep"></div>
         <li><a href="#fase2">Fase 2 &amp; 3</a></li>
       </ul>
@@ -478,6 +480,9 @@ pre {
           <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>tokens.css</strong> <span>— variabili CSS <code>--ab-*</code> (colori, tipografia, spaziatura)</span></div></div>
           <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>front-page.php</strong> <span>— homepage completamente custom (no Blocksy chrome), assets enqueued direttamente nel template</span></div></div>
           <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>front-page.css + front-page.js</strong> <span>— stili homepage, nav sticky, hamburger mobile responsive</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>footer.php + ab-footer.php</strong> <span>— footer globale (newsletter Mailchimp + 3 colonne: legale, navigazione, social) — override del footer Blocksy, attivo su tutte le pagine</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>ab-social.php</strong> <span>— social links condivisi tra header homepage e colonna footer (modulo unico)</span></div></div>
+          <div class="check-item done"><div class="ci-icon">✓</div><div class="ci-text"><strong>Feature flags in wp-config.php</strong> <span>— <code>AB_COMPARATORE_ATTIVO</code> controlla hero card, "Confronta ora", sezione fornitori · <code>AB_REGISTRAZIONE_ATTIVA</code> controlla "Accedi", sezione piani account</span></div></div>
         </div>
 
         <h3>Sezione Servizi</h3>
@@ -505,9 +510,10 @@ pre {
           <h2>Da completare — sviluppo <span class="badge badge-dev">dev</span></h2>
         </div>
         <div class="checklist">
-          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>og-preview.png</strong> <span>— l'immagine professionale che hai condiviso va caricata manualmente via FTP o GitHub nel percorso <code>static/img/og-preview.png</code></span></div></div>
-          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>Template pagine servizi — enqueue CSS</strong> <span>— verificare che <code>services.css</code> carichi correttamente una volta create le pagine nel pannello WP (stesso problema risolto per la homepage)</span></div></div>
-          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>Footer WordPress</strong> <span>— il footer della homepage è custom, ma le pagine servizi usano il footer di Blocksy: da uniformare o personalizzare</span></div></div>
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>og-preview.png</strong> <span>— l'immagine professionale va caricata manualmente via FTP nel percorso <code>static/img/og-preview.png</code></span></div></div>
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>Template pagine servizi — enqueue CSS</strong> <span>— verificare che <code>services.css</code> carichi correttamente una volta create le pagine nel pannello WP</span></div></div>
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>Dati legali footer</strong> <span>— compilare ragione sociale, P.IVA, indirizzo nel file <code>templates/parts/ab-footer.php</code> (segnaposto attualmente visibili)</span></div></div>
+          <div class="check-item todo"><div class="ci-icon">○</div><div class="ci-text"><strong>URL social</strong> <span>— aggiornare i link reali di Facebook, Instagram, LinkedIn, X nel file <code>templates/parts/ab-social.php</code></span></div></div>
         </div>
       </section>
 
@@ -744,6 +750,98 @@ docker compose down && docker compose up -d</pre>
               </div>
             </div>
             <div class="warnbox">Il database WordPress (contenuti, pagine, articoli) non è nel repo Git — vive solo nel volume Docker. Per migrare i contenuti da locale a produzione usa un plugin come WP Migrate o esporta/importa via wp-admin.</div>
+          </div>
+        </div>
+
+        <!-- GUIDA 7 -->
+        <div class="guide" id="g-footer">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">🦶</span>
+            <span class="gh-title">7 · Personalizzare footer e profili social</span>
+            <span class="gh-badge badge badge-manual">da fare</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <p>Il footer compare su <strong>tutte le pagine</strong> del sito (homepage e pagine servizi). È definito in <code>templates/parts/ab-footer.php</code>. I social sono in <code>templates/parts/ab-social.php</code> — stesso file usato anche nell'header della homepage.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <strong>Dati legali</strong>
+                  <p>Apri <code>wp-content/themes/comparatore-theme/templates/parts/ab-footer.php</code> e sostituisci i segnaposto nella colonna "Altrabolletta.it":</p>
+                  <pre>[Ragione Sociale S.r.l.]  →  nome legale della società
+[00000000000]             →  P.IVA / Codice Fiscale
+[Indirizzo], [CAP] [Città] →  sede legale</pre>
+                  <p>Nello stesso file, verifica che gli URL di Privacy Policy, Cookie Policy e Note legali corrispondano agli slug delle pagine che creerai in WordPress.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Profili social</strong>
+                  <p>Apri <code>wp-content/themes/comparatore-theme/templates/parts/ab-social.php</code> e aggiorna la variabile <code>$ab_socials</code> con gli URL reali:</p>
+                  <pre>'url' => 'https://www.facebook.com/altrabolletta',
+'url' => 'https://www.instagram.com/altrabolletta',
+'url' => 'https://www.linkedin.com/company/altrabolletta',
+'url' => 'https://x.com/altrabolletta',</pre>
+                  <p>Per aggiungere o rimuovere un social: aggiungi/rimuovi un elemento dall'array (copia la struttura degli altri). Le icone sono SVG inline — cercale su <a href="https://lucide.dev" target="_blank" rel="noopener">lucide.dev</a>.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <strong>Newsletter nel footer</strong>
+                  <p>Il form newsletter nel footer usa lo stesso endpoint Mailchimp del form nella hero card. Se cambi lista Mailchimp, aggiorna l'attributo <code>action</code> del form in <code>ab-footer.php</code>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="infobox">I social appaiono in due punti: nella colonna del footer e nell'header della homepage (solo desktop + menu mobile). Modificare <code>ab-social.php</code> aggiorna entrambi automaticamente.</div>
+          </div>
+        </div>
+
+        <!-- GUIDA 8 -->
+        <div class="guide" id="g-flags">
+          <div class="guide-header" onclick="toggleGuide(this)">
+            <span class="gh-icon">🚦</span>
+            <span class="gh-title">8 · Attivare comparatore e area registrazione (feature flags)</span>
+            <span class="gh-badge badge badge-done">riferimento</span>
+            <span class="gh-arrow">▶</span>
+          </div>
+          <div class="guide-body">
+            <p>Due costanti PHP in <code>wp-config.php</code> controllano le sezioni del sito non ancora pronte. Finché non sono definite, quelle sezioni sono nascoste.</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <strong>Attivare il comparatore (Fase 2)</strong>
+                  <p>Aggiunge in homepage: hero card con il form di comparazione, pulsante "Confronta ora" nell'header, sezione "I fornitori che confrontiamo". Aggiunge nel footer: link "Comparatore" nella colonna navigazione.</p>
+                  <p>In <code>wp-config.php</code>, prima di <code>/* That's all, stop editing! */</code>:</p>
+                  <pre>define( 'AB_COMPARATORE_ATTIVO', true );</pre>
+                  <p>Per tornare indietro: rimuovi la riga (o cambia in <code>false</code>). La hero torna al form newsletter Mailchimp.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>Attivare la registrazione utenti (Fase 3)</strong>
+                  <p>Aggiunge in homepage: pulsante "Accedi" nell'header, sezione "Un account, se e quando ti serve" con i piani Free/Premium. Aggiunge nel footer: link "Area personale" nella colonna navigazione.</p>
+                  <pre>define( 'AB_REGISTRAZIONE_ATTIVA', true );</pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <strong>Test in locale</strong>
+                  <p>Nel file <code>docker-compose.yml</code>, aggiungile sotto <code>WORDPRESS_CONFIG_EXTRA</code>:</p>
+                  <pre>WORDPRESS_CONFIG_EXTRA: |
+  define( 'WP_HOME', ... );
+  define( 'WP_SITEURL', ... );
+  define( 'AB_COMPARATORE_ATTIVO', true );
+  define( 'AB_REGISTRAZIONE_ATTIVA', true );</pre>
+                  <p>Poi: <code>docker compose down &amp;&amp; docker compose up -d</code></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
