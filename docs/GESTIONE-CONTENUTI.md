@@ -149,13 +149,19 @@ Le pagine contengono i contenuti statici del sito che non cambiano frequentement
 
 ### Pagine già presenti
 
-| Pagina | Template assegnato | Note |
-|---|---|---|
-| Home | Homepage Altrabolletta | Completamente custom — non usare l'editor per questa pagina |
-| Servizi | Servizi — Index | Generata automaticamente dai servizi creati |
-| Servizi / Privati | Servizi — Privati | Generata automaticamente |
-| Servizi / Imprese | Servizi — Imprese | Generata automaticamente |
-| Servizi / Società | Servizi — Società di vendita | Generata automaticamente |
+Queste pagine vanno create a mano in WP admin (Pagine → Aggiungi nuova), ma il loro **contenuto viene popolato automaticamente** dal template PHP — non serve scrivere nulla nell'editor.
+
+> **Importante**: i template PHP devono essere già presenti sul server (caricati via FTP) prima di creare le pagine, altrimenti WordPress non troverà il template corretto.
+
+| Pagina | Slug | Template da assegnare | Pagina genitore |
+|---|---|---|---|
+| Home | `home` o radice | Homepage Altrabolletta | — |
+| Servizi | `servizi` | Servizi — Index | — |
+| Servizi / Privati | `privati` | Servizi — Privati | Servizi |
+| Servizi / Imprese | `imprese` | Servizi — Imprese | Servizi |
+| Servizi / Società | `societa` | Servizi — Società di vendita | Servizi |
+
+Il template si imposta nel pannello destro → **Attributi pagina → Template**. La pagina genitore si imposta nello stesso pannello.
 
 ### Pagine da creare
 
