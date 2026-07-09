@@ -151,7 +151,7 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 		</div>
 	</section>
 
-	<section class="ab-section">
+	<section class="ab-section ab-section-steps">
 		<div class="wrap">
 			<div class="ab-section-head">
 				<h2>Come funziona il confronto</h2>
@@ -244,7 +244,7 @@ $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATT
 
 	if ( $ab_magazine_query->have_posts() ) :
 		?>
-		<section class="ab-section">
+		<section class="ab-section ab-section-magazine">
 			<div class="wrap">
 				<div class="ab-section-head">
 					<h2>Dal Magazine</h2>

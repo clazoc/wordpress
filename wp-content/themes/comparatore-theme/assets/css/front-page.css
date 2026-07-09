@@ -151,6 +151,32 @@
 .ab-home .ab-mobile-menu .ab-menu { flex-direction: column; gap: 16px; }
 .ab-home .ab-mobile-menu .ab-nav-actions { flex-wrap: wrap; }
 
+/* ---- Sezione "Come funziona il confronto" ---- */
+.ab-home .ab-section-steps {
+	background:
+		/* griglia di punti decorativa in tono verde chiarissimo */
+		radial-gradient(circle, rgba(122,200,67,.18) 1.5px, transparent 1.5px),
+		/* gradiente di sfondo che rompe il bianco piatto */
+		linear-gradient(160deg, #eef7e2 0%, #f7faf2 55%, #e8f4f0 100%);
+	background-size: 28px 28px, 100% 100%;
+	/* bordo superiore arcobaleno come separatore visivo */
+	border-top: 3px solid transparent;
+	border-image: var(--ab-rainbow) 1;
+}
+
+/* ---- Sezione "Dal Magazine" ---- */
+.ab-home .ab-section-magazine {
+	/* sfondo scuro che riprende il footer e crea ritmo visivo */
+	background: var(--ab-ink);
+	/* sottile striscia arcobaleno sul bordo superiore */
+	border-top: 3px solid transparent;
+	border-image: var(--ab-rainbow) 1;
+}
+.ab-home .ab-section-magazine .ab-section-head h2 { color: #fff; }
+.ab-home .ab-section-magazine .ab-section-head p  { color: rgba(255,255,255,.65); }
+/* le card articolo restano bianche, il contrasto le fa risaltare */
+.ab-home .ab-section-magazine .ab-article-card { box-shadow: 0 4px 20px rgba(0,0,0,.25); }
+
 @media (max-width: 900px) {
 	.ab-home .ab-hero-grid { grid-template-columns: 1fr; }
 	.ab-home .ab-steps,
