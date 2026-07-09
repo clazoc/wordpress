@@ -5,7 +5,7 @@
  */
 /* Layout wrapper globale — specificità body .wrap per battere Blocksy */
 body .wrap {
-	max-width: 1120px;
+	max-width: 1400px;
 	margin: 0 auto;
 	padding: 0 48px;
 }

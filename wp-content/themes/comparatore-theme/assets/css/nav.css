@@ -53,6 +53,7 @@ body .ab-home .ab-nav .wrap { padding: 0 24px; }
 
 @media (max-width: 900px) {
 	.ab-home .ab-nav-inner .ab-menu,
-	.ab-home .ab-nav-inner .ab-nav-actions { display: none; }
+	.ab-home .ab-nav-inner .ab-nav-actions,
+	.ab-home .ab-nav-inner .ab-social-links { display: none; }
 	.ab-home .ab-menu-toggle { display: flex; }
 }
