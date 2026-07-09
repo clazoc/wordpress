@@ -1,0 +1,270 @@
+/* Archivio categorie / tag / autori */
+
+.ab-archive-wrap {
+	background: var(--ab-bg);
+	min-height: 60vh;
+	padding: 56px 0 80px;
+}
+
+/* ---- Intestazione archivio ---- */
+.ab-archive-header {
+	margin-bottom: 48px;
+	padding-bottom: 28px;
+	border-bottom: 1px solid var(--ab-line);
+}
+
+.ab-archive-label {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .6px;
+	color: var(--ab-accent-hover);
+	margin: 0 0 8px;
+}
+
+.ab-archive-title {
+	font-size: 32px;
+	font-weight: 700;
+	letter-spacing: -0.5px;
+	color: var(--ab-ink);
+	margin: 0 0 10px;
+	line-height: 1.2;
+}
+
+.ab-archive-desc {
+	font-size: 15px;
+	color: var(--ab-ink-soft);
+	margin: 0;
+	line-height: 1.6;
+	max-width: 600px;
+}
+
+/* ---- Lista articoli ---- */
+.ab-post-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+/* ---- Singola riga ---- */
+.ab-post-row {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 36px;
+	align-items: center;
+	padding: 36px 0;
+	border-bottom: 1px solid var(--ab-line);
+}
+
+.ab-post-row--flip {
+	grid-template-columns: 1fr 280px;
+}
+
+.ab-post-row--flip .ab-post-thumb {
+	order: 2;
+}
+
+.ab-post-row--flip .ab-post-body {
+	order: 1;
+}
+
+/* ---- Immagine ---- */
+.ab-post-thumb {
+	display: block;
+	border-radius: 10px;
+	overflow: hidden;
+	aspect-ratio: 16 / 9;
+	background: linear-gradient(135deg, #eef2f1, #e3ebe9);
+	flex-shrink: 0;
+}
+
+.ab-post-thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform .3s ease;
+}
+
+.ab-post-thumb:hover img {
+	transform: scale(1.04);
+}
+
+.ab-post-thumb--empty {
+	aspect-ratio: 16 / 9;
+}
+
+/* ---- Contenuto testuale ---- */
+.ab-post-body {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+/* Categorie badge */
+.ab-post-cats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.ab-post-cat {
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .5px;
+	color: var(--ab-accent-hover);
+	background: var(--ab-accent-soft);
+	padding: 3px 10px;
+	border-radius: 12px;
+	text-decoration: none;
+}
+
+.ab-post-cat:hover {
+	background: var(--ab-accent);
+	color: #fff;
+}
+
+/* Titolo */
+.ab-post-title {
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: -0.3px;
+	color: var(--ab-ink);
+	line-height: 1.3;
+	margin: 0;
+}
+
+.ab-post-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ab-post-title a:hover {
+	color: var(--ab-accent-hover);
+}
+
+/* Estratto */
+.ab-post-excerpt {
+	font-size: 14px;
+	line-height: 1.65;
+	color: var(--ab-ink-soft);
+	margin: 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Meta: autore · data · tempo di lettura */
+.ab-post-meta {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+	font-size: 13px;
+	color: var(--ab-ink-soft);
+}
+
+.ab-post-sep {
+	opacity: .4;
+}
+
+.ab-post-author {
+	font-weight: 600;
+	color: var(--ab-ink);
+}
+
+/* Link "Leggi l'articolo" */
+.ab-post-readmore {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ab-accent-hover);
+	text-decoration: none;
+	margin-top: 4px;
+	align-self: flex-start;
+}
+
+.ab-post-readmore:hover {
+	color: var(--ab-ink);
+}
+
+/* ---- Paginazione ---- */
+.ab-pagination {
+	margin-top: 48px;
+	display: flex;
+	justify-content: center;
+}
+
+.ab-pagination .nav-links {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.ab-pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 38px;
+	height: 38px;
+	padding: 0 10px;
+	border-radius: 8px;
+	border: 1px solid var(--ab-line);
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--ab-ink);
+	text-decoration: none;
+	background: #fff;
+}
+
+.ab-pagination .page-numbers:hover {
+	border-color: var(--ab-accent);
+	color: var(--ab-accent-hover);
+}
+
+.ab-pagination .page-numbers.current {
+	background: var(--ab-accent);
+	border-color: var(--ab-accent);
+	color: #fff;
+}
+
+.ab-pagination .page-numbers.dots {
+	border: none;
+	background: none;
+}
+
+/* ---- Vuoto ---- */
+.ab-archive-empty {
+	font-size: 15px;
+	color: var(--ab-ink-soft);
+	padding: 40px 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 760px) {
+	.ab-post-row,
+	.ab-post-row--flip {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.ab-post-row--flip .ab-post-thumb,
+	.ab-post-row--flip .ab-post-body {
+		order: unset;
+	}
+
+	.ab-post-thumb {
+		aspect-ratio: 16 / 7;
+	}
+
+	.ab-archive-title { font-size: 26px; }
+	.ab-post-title    { font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+	.ab-archive-wrap { padding: 36px 0 56px; }
+}
