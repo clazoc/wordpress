@@ -9,7 +9,7 @@ get_header();
 ?>
 
 <div class="ab-archive-wrap">
-	<div class="ab-archive-inner wrap">
+	<div class="ab-archive-inner">
 
 		<header class="ab-archive-header">
 			<?php if ( is_category() ) : ?>
@@ -84,19 +84,20 @@ get_header();
 							<time class="ab-post-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
 								<?php echo esc_html( get_the_date( 'j F Y' ) ); ?>
 							</time>
-							<span class="ab-post-sep" aria-hidden="true">·</span>
-							<span class="ab-post-readtime">
 								<?php
 								$words   = str_word_count( wp_strip_all_tags( get_the_content() ) );
 								$minutes = max( 1, (int) round( $words / 200 ) );
-								printf( '%d min di lettura', $minutes );
-								?>
-							</span>
+							?>
 						</div>
 
-						<a class="ab-post-readmore" href="<?php the_permalink(); ?>">
-							Leggi l'articolo →
-						</a>
+						<div class="ab-post-footer">
+							<a class="ab-post-readmore" href="<?php the_permalink(); ?>">
+								Leggi l'articolo →
+							</a>
+							<span class="ab-post-readtime">
+								<?php printf( '%d min di lettura', $minutes ); ?>
+							</span>
+						</div>
 					</div>
 
 				</li>

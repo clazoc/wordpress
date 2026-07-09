@@ -111,11 +111,15 @@ I servizi sono gestiti tramite una sezione dedicata chiamata **"Servizi"** nel p
 
 | Categoria | Pagina del sito |
 |---|---|
-| **Privati** | `/servizi/privati` |
-| **Imprese** | `/servizi/imprese` |
-| **Società di vendita** | `/servizi/societa` |
+| **Privati** | `/servizi/privati/` |
+| **Imprese** | `/servizi/imprese/` |
+| **Società di vendita** | `/servizi/societa/` |
+
+Le pagine di categoria mostrano **automaticamente** tutti i servizi assegnati a quella categoria. Non devi fare nulla di speciale: pubblica il servizio con la categoria giusta e compare nella pagina corrispondente.
 
 L'ordine in cui compaiono nella pagina dipende dal campo **Ordine** (menu_order): numeri più bassi vengono prima.
+
+> **Prerequisito**: le pagine Servizi devono essere create in WP admin con i template corretti (vedi sezione "Le pagine" più avanti). Senza le pagine, gli URL non funzionano.
 
 ### Pubblicare un nuovo servizio
 
