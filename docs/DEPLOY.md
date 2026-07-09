@@ -94,6 +94,17 @@ In alternativa, per un aggiornamento completo via FileZilla: trascina di nuovo e
 - I media caricati (`wp-content/uploads/`) — non sono nel repo
 - `wp-config.php` — non è nel repo, non viene mai sovrascritto
 
+**3. Svuota la cache del server**
+
+Register.it (e in generale tutti gli hosting WordPress gestiti) mantiene una cache lato server che serve le pagine già pre-generate. Dopo ogni upload di file CSS, JS o PHP, la cache va svuotata — altrimenti il sito continua a mostrare la versione vecchia anche dopo un hard refresh del browser.
+
+Due modi per farlo:
+
+- **Dal plugin LiteSpeed Cache** (installato automaticamente da register.it): nel pannello WordPress, barra laterale → **LiteSpeed Cache → Svuota tutto** (o "Purge All")
+- **Dal pannello register.it**: sezione del piano WordPress → cerca un pulsante "Svuota cache" o "Clear cache"
+
+> Il flusso completo ad ogni aggiornamento è quindi: `git pull` → upload FTP → svuota cache.
+
 ### 3. Configurare il sito online come in locale
 
 Accedi a `tuosito.it/wp-admin` e ripeti gli stessi passaggi fatti in locale (vedi `LOCAL_SETUP.md`, punto 5):
