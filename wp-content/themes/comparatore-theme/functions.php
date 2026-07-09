@@ -63,6 +63,15 @@ add_action( 'wp_enqueue_scripts', function () {
 		true
 	);
 
+	if ( is_404() ) {
+		wp_enqueue_style(
+			'comparatore-theme-404',
+			get_stylesheet_directory_uri() . '/assets/css/404.css',
+			[ 'comparatore-theme-tokens' ],
+			ab_asset_ver( 'assets/css/404.css' )
+		);
+	}
+
 	if ( is_singular( 'post' ) || is_category() || is_tag() || is_archive() ) {
 		wp_enqueue_style(
 			'comparatore-theme-content',

@@ -1,0 +1,128 @@
+.ab-404-wrap {
+	min-height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 72px 24px;
+	background: linear-gradient(180deg, #f3f7f6 0%, var(--ab-bg) 100%);
+}
+
+.ab-404-inner {
+	max-width: 560px;
+	width: 100%;
+	text-align: center;
+}
+
+.ab-404-icon {
+	font-size: 64px;
+	line-height: 1;
+	margin-bottom: 16px;
+	animation: ab-flicker 3s ease-in-out infinite;
+}
+
+@keyframes ab-flicker {
+	0%, 90%, 100% { opacity: 1; }
+	92%            { opacity: .2; }
+	94%            { opacity: 1; }
+	96%            { opacity: .3; }
+	98%            { opacity: 1; }
+}
+
+.ab-404-code {
+	font-size: 100px;
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -4px;
+	margin: 0 0 8px;
+	background: var(--ab-rainbow);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.ab-404-title {
+	font-size: 32px;
+	font-weight: 700;
+	letter-spacing: -0.5px;
+	color: var(--ab-ink);
+	margin: 0 0 16px;
+}
+
+.ab-404-lead {
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--ab-ink-soft);
+	margin: 0 0 36px;
+}
+
+.ab-404-actions {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: 36px;
+}
+
+.ab-404-btn {
+	display: inline-block;
+	padding: 12px 24px;
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	border: 1px solid var(--ab-line);
+	line-height: 1.2;
+}
+
+.ab-404-btn-primary {
+	background: var(--ab-accent);
+	color: #fff;
+	border-color: var(--ab-accent);
+}
+
+.ab-404-btn-ghost {
+	background: #fff;
+	color: var(--ab-ink);
+}
+
+.ab-404-tip {
+	font-size: 14px;
+	color: var(--ab-ink-soft);
+	margin: 0 0 12px;
+}
+
+/* Search form di WordPress */
+.ab-404-inner .search-form {
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+}
+
+.ab-404-inner .search-field {
+	flex: 1;
+	max-width: 320px;
+	padding: 10px 14px;
+	border: 1px solid var(--ab-line);
+	border-radius: 8px;
+	font-size: 14px;
+	background: #fff;
+	color: var(--ab-ink);
+}
+
+.ab-404-inner .search-submit {
+	padding: 10px 18px;
+	border-radius: 8px;
+	border: none;
+	background: var(--ab-accent);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+@media (max-width: 480px) {
+	.ab-404-code   { font-size: 72px; letter-spacing: -2px; }
+	.ab-404-title  { font-size: 26px; }
+	.ab-404-inner .search-form { flex-direction: column; align-items: stretch; }
+	.ab-404-inner .search-field { max-width: none; }
+}
