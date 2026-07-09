@@ -1,29 +1,5 @@
 /* Homepage — riprende il mockup approvato, usa i token in tokens.css */
-
-.ab-home .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
-.ab-home .rainbow-bar { height: 5px; background: var(--ab-rainbow); }
-
-.ab-home .ab-nav {
-	background: #fff;
-	border-bottom: 1px solid var(--ab-line);
-}
-.ab-home .ab-nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
-.ab-home .ab-logo { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; color: var(--ab-ink); }
-.ab-home .ab-logo span { color: var(--ab-accent-bright); }
-.ab-home .ab-menu { display: flex; gap: 32px; font-size: 15px; font-weight: 500; color: var(--ab-ink-soft); list-style: none; margin: 0; padding: 0; }
-.ab-home .ab-menu li { margin: 0; }
-.ab-home .ab-menu a { color: inherit; text-decoration: none; }
-.ab-home .ab-menu a:hover { color: var(--ab-ink); }
-.ab-home .ab-nav-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
-
-.ab-home .ab-btn {
-	display: inline-block;
-	padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;
-	border: 1px solid var(--ab-line); cursor: pointer; text-decoration: none; line-height: 1.2;
-}
-.ab-home .ab-btn-ghost { background: #fff; color: var(--ab-ink); }
-.ab-home .ab-btn-primary { background: var(--ab-accent); color: #fff; border-color: var(--ab-accent); }
+/* Nav, btn, mobile-menu: vedi nav.css (caricato globalmente) */
 
 .ab-home .ab-hero {
 	background: linear-gradient(180deg, #f3f7f6 0%, var(--ab-bg) 100%);
@@ -131,26 +107,6 @@
 .ab-home .ab-newsletter-form input { padding: 12px 14px; border-radius: 7px; border: none; font-size: 14px; width: 240px; }
 .ab-home .ab-newsletter-form button { padding: 12px 20px; border-radius: 7px; border: none; background: #1f2e1c; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
 
-/* MOBILE MENU (hamburger) */
-.ab-home .ab-menu-toggle {
-	display: none;
-	flex-direction: column; justify-content: center; gap: 5px;
-	width: 36px; height: 36px; padding: 0; border: none; background: none; cursor: pointer; flex-shrink: 0;
-}
-.ab-home .ab-menu-toggle span {
-	display: block; width: 100%; height: 2px; background: var(--ab-ink); border-radius: 1px;
-}
-.ab-home .ab-mobile-menu {
-	display: none;
-	flex-direction: column; gap: 20px;
-	padding: 20px 24px 28px;
-	border-top: 1px solid var(--ab-line);
-	background: #fff;
-}
-.ab-home .ab-mobile-menu.is-open { display: flex; }
-.ab-home .ab-mobile-menu .ab-menu { flex-direction: column; gap: 16px; }
-.ab-home .ab-mobile-menu .ab-nav-actions { flex-wrap: wrap; }
-
 /* ---- Sezione "Come funziona il confronto" ---- */
 .ab-home .ab-section-steps {
 	background:
@@ -177,9 +133,6 @@
 	.ab-home .ab-trust-grid,
 	.ab-home .ab-plans,
 	.ab-home .ab-articles { grid-template-columns: 1fr; }
-	.ab-home .ab-nav-inner .ab-menu,
-	.ab-home .ab-nav-inner .ab-nav-actions { display: none; }
-	.ab-home .ab-menu-toggle { display: flex; }
 }
 
 @media (max-width: 600px) {

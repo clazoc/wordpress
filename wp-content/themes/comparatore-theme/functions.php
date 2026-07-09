@@ -42,10 +42,25 @@ add_action( 'wp_enqueue_scripts', function () {
 	);
 
 	wp_enqueue_style(
+		'comparatore-theme-nav',
+		get_stylesheet_directory_uri() . '/assets/css/nav.css',
+		[ 'comparatore-theme-tokens' ],
+		ab_asset_ver( 'assets/css/nav.css' )
+	);
+
+	wp_enqueue_style(
 		'comparatore-theme-footer',
 		get_stylesheet_directory_uri() . '/assets/css/ab-footer.css',
 		[ 'comparatore-theme-tokens' ],
 		ab_asset_ver( 'assets/css/ab-footer.css' )
+	);
+
+	wp_enqueue_script(
+		'comparatore-theme-nav',
+		get_stylesheet_directory_uri() . '/assets/js/front-page.js',
+		[],
+		ab_asset_ver( 'assets/js/front-page.js' ),
+		true
 	);
 
 	if ( is_singular( 'post' ) || is_category() || is_tag() || is_archive() ) {

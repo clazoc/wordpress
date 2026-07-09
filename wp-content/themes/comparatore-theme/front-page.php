@@ -18,13 +18,6 @@ wp_enqueue_style(
 	[ 'comparatore-theme-tokens' ],
 	ab_asset_ver( 'assets/css/front-page.css' )
 );
-wp_enqueue_script(
-	'comparatore-theme-front-page',
-	get_stylesheet_directory_uri() . '/assets/js/front-page.js',
-	[],
-	ab_asset_ver( 'assets/js/front-page.js' ),
-	true
-);
 
 $ab_comparatore = defined( 'AB_COMPARATORE_ATTIVO' )  && AB_COMPARATORE_ATTIVO;
 $ab_registrazione = defined( 'AB_REGISTRAZIONE_ATTIVA' ) && AB_REGISTRAZIONE_ATTIVA;
