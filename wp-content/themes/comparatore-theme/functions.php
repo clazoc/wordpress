@@ -136,3 +136,46 @@ add_action( 'wp_enqueue_scripts', function () {
 	}
 
 } );
+
+// ---- Campi fatturazione extra (Codice Fiscale, P.IVA, SDI) ----
+add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
+	$fields['billing']['billing_codice_fiscale'] = [
+		'label'    => 'Codice fiscale',
+		'required' => true,
+		'class'    => [ 'form-row-wide' ],
+		'priority' => 25,
+	];
+	$fields['billing']['billing_piva'] = [
+		'label'    => 'Partita IVA',
+		'required' => false,
+		'class'    => [ 'form-row-wide' ],
+		'priority' => 26,
+	];
+	$fields['billing']['billing_sdi'] = [
+		'label'    => 'Codice SDI / PEC',
+		'required' => false,
+		'class'    => [ 'form-row-wide' ],
+		'priority' => 27,
+	];
+	return $fields;
+} );
+
+// Salva i campi extra sull'ordine
+add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
+	$extra_fields = [ 'billing_codice_fiscale', 'billing_piva', 'billing_sdi' ];
+	foreach ( $extra_fields as $field ) {
+		if ( ! empty( $_POST[ $field ] ) ) {
+			update_post_meta( $order_id, '_' . $field, sanitize_text_field( $_POST[ $field ] ) );
+		}
+	}
+} );
+
+// Mostra i campi extra nel dettaglio ordine in admin
+add_action( 'woocommerce_admin_order_data_after_billing_address', function ( $order ) {
+	$cf  = get_post_meta( $order->get_id(), '_billing_codice_fiscale', true );
+	$pi  = get_post_meta( $order->get_id(), '_billing_piva',           true );
+	$sdi = get_post_meta( $order->get_id(), '_billing_sdi',            true );
+	if ( $cf )  echo '<p><strong>Codice fiscale:</strong> ' . esc_html( $cf )  . '</p>';
+	if ( $pi )  echo '<p><strong>Partita IVA:</strong> '   . esc_html( $pi )  . '</p>';
+	if ( $sdi ) echo '<p><strong>Codice SDI/PEC:</strong> '. esc_html( $sdi ) . '</p>';
+} );

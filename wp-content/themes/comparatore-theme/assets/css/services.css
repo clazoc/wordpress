@@ -108,6 +108,14 @@
 	text-decoration: none;
 }
 .ab-btn-info:hover { border-color: var(--ab-ink); }
+.ab-btn-buy {
+	display: inline-flex; align-items: center;
+	padding: 10px 22px; border-radius: 7px; font-size: 14px; font-weight: 700;
+	background: var(--ab-accent); color: #fff; border: 1px solid var(--ab-accent);
+	text-decoration: none; transition: background .15s;
+}
+.ab-btn-buy:hover { background: var(--ab-accent-hover); border-color: var(--ab-accent-hover); color: #fff; }
+.ab-tag-price.ab-woo-price { font-size: 15px; }
 
 /* PLACEHOLDER IMMAGINE */
 .ab-service-block-img {

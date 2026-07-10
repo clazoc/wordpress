@@ -64,7 +64,8 @@ class AB_Servizi_CPT {
 		$is_free      = get_post_meta( $post->ID, '_ab_is_free',      true );
 		$prezzo       = get_post_meta( $post->ID, '_ab_prezzo',       true );
 		$coming_soon  = get_post_meta( $post->ID, '_ab_coming_soon',  true );
-		$info_subject = get_post_meta( $post->ID, '_ab_info_subject', true );
+		$info_subject    = get_post_meta( $post->ID, '_ab_info_subject',    true );
+		$woo_product_id  = get_post_meta( $post->ID, '_ab_woo_product_id',  true );
 		?>
 		<p>
 			<label for="ab_cat"><strong>Categoria</strong></label><br>
@@ -103,6 +104,11 @@ class AB_Servizi_CPT {
 			<label for="ab_info_subject"><strong>Oggetto email "Richiedi info"</strong></label><br>
 			<input type="text" name="ab_info_subject" id="ab_info_subject" value="<?php echo esc_attr( $info_subject ); ?>" style="width:100%" placeholder="lascia vuoto per nascondere il bottone">
 		</p>
+		<p style="border-top:1px solid #ddd;padding-top:10px;margin-top:10px">
+			<label for="ab_woo_product_id"><strong>ID prodotto WooCommerce</strong></label><br>
+			<input type="number" name="ab_woo_product_id" id="ab_woo_product_id" value="<?php echo esc_attr( $woo_product_id ); ?>" style="width:100%" placeholder="es. 42 — lascia vuoto se non collegato">
+			<span style="font-size:11px;color:#666">Collega un prodotto WooCommerce per mostrare il prezzo e il bottone Acquista.</span>
+		</p>
 		<?php
 	}
 
@@ -117,11 +123,12 @@ class AB_Servizi_CPT {
 		}
 
 		$fields = [
-			'_ab_cat'          => 'ab_cat',
-			'_ab_anchor'       => 'ab_anchor',
-			'_ab_emoji'        => 'ab_emoji',
-			'_ab_prezzo'       => 'ab_prezzo',
-			'_ab_info_subject' => 'ab_info_subject',
+			'_ab_cat'             => 'ab_cat',
+			'_ab_anchor'          => 'ab_anchor',
+			'_ab_emoji'           => 'ab_emoji',
+			'_ab_prezzo'          => 'ab_prezzo',
+			'_ab_info_subject'    => 'ab_info_subject',
+			'_ab_woo_product_id'  => 'ab_woo_product_id',
 		];
 		foreach ( $fields as $meta_key => $input_key ) {
 			$value = isset( $_POST[ $input_key ] ) ? sanitize_text_field( $_POST[ $input_key ] ) : '';

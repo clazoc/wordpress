@@ -399,3 +399,72 @@ Buone abitudini per ogni contenuto:
 - Meta description che invoglia a cliccare
 - Immagine in evidenza con alt text compilato
 - Estratto scritto manualmente (più preciso di quello automatico)
+
+---
+
+## WooCommerce — Gestione servizi a pagamento
+
+### Configurazione iniziale (una tantum)
+
+1. **Installa WooCommerce** — `Plugin → Aggiungi nuovo → WooCommerce` → Attiva → segui il wizard (seleziona "Italia", valuta "EUR", tipo "Servizi/Virtuali")
+2. **Installa WooCommerce PayPal Payments** — `Plugin → Aggiungi nuovo → WooCommerce PayPal Payments` → Attiva → `WooCommerce → Impostazioni → Pagamenti → PayPal` → collegati con il tuo account PayPal
+3. **Installa plugin Aruba Fatturazione** — scarica il plugin dal portale Aruba o cercalo su WordPress.org come "Aruba Fatturazione Elettronica per WooCommerce" → caricalo da `Plugin → Aggiungi nuovo → Carica plugin` → inserisci le API key dal pannello Aruba Fatturazione
+
+### Creare un prodotto/servizio
+
+1. `Prodotti → Aggiungi nuovo`
+2. Tipo prodotto: **Prodotto semplice** (o "Virtuale" se non richiede spedizione — consigliato per servizi)
+3. Compila: nome, descrizione breve, prezzo
+4. Pubblica
+5. Annota l'**ID** del prodotto (visibile nell'URL della pagina di modifica: `post=XXX`)
+
+### Collegare un servizio al prodotto WooCommerce
+
+1. Vai in `Servizi → [nome servizio]`
+2. Nel pannello laterale "Dettagli servizio" trovi il campo **"ID prodotto WooCommerce"**
+3. Inserisci l'ID del prodotto corrispondente
+4. Salva
+
+Il blocco servizio mostrerà automaticamente:
+- Il **prezzo aggiornato** preso da WooCommerce (se cambi il prezzo in WooCommerce, si aggiorna ovunque)
+- Il **bottone "Acquista →"** che porta direttamente al checkout (salta la pagina prodotto)
+
+### Pagine generate automaticamente da WooCommerce
+
+WooCommerce crea automaticamente queste pagine alla prima installazione:
+
+| Pagina | URL | Descrizione |
+|--------|-----|-------------|
+| Shop | `/shop` | Catalogo prodotti |
+| Carrello | `/cart` | Riepilogo prima del pagamento |
+| Checkout | `/checkout` | Form dati + pagamento |
+| Il mio account | `/my-account` | Area clienti |
+
+Puoi aggiungere "Shop" o "Il mio account" al menu da `Aspetto → Menu`.
+
+### Campi di fatturazione nel checkout
+
+Il checkout raccoglie:
+- Nome, cognome
+- Ragione sociale / Azienda (opzionale)
+- **Codice fiscale** (obbligatorio)
+- **Partita IVA** (opzionale — per aziende)
+- Indirizzo, CAP, città, provincia
+- Email, telefono
+- **Codice SDI / PEC** (opzionale — per fattura elettronica)
+
+I campi Codice fiscale, Partita IVA e Codice SDI sono visibili nell'admin sotto ogni ordine (`WooCommerce → Ordini → [ordine]`).
+
+### Gestione ordini
+
+`WooCommerce → Ordini` — lista tutti gli ordini con stato (In attesa, In lavorazione, Completato, Rimborsato)
+
+Dopo che un ordine raggiunge lo stato **"Completato"**, il plugin Aruba genera e invia automaticamente la fattura elettronica al SdI.
+
+### App WooCommerce (mobile)
+
+Scarica l'app **WooCommerce** (iOS/Android) separata dall'app WordPress:
+- Notifiche push per ogni nuovo ordine
+- Gestione ordini e rimborsi
+- Statistiche vendite
+- Aggiunta/modifica prodotti
