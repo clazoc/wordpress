@@ -166,7 +166,7 @@
 
 /* ---- Wrapper generico pagine WC ---- */
 .ab-woo-wrap {
-	max-width: 1100px;
+	max-width: 1400px;
 	margin: 0 auto;
 	padding: 48px 48px 72px;
 }
@@ -191,8 +191,8 @@
 .ab-checkout-form { margin-top: 0; }
 .ab-checkout-grid {
 	display: grid;
-	grid-template-columns: 1fr 400px;
-	gap: 48px;
+	grid-template-columns: 1fr 420px;
+	gap: 64px;
 	align-items: start;
 }
 .ab-checkout-section-title {
@@ -247,6 +247,9 @@
 	border-left: 4px solid #e0567e;
 }
 .ab-thankyou-notice--error p { color: var(--ab-ink); margin-bottom: 12px; }
+
+/* Nasconde la voce "Spedizione" nel riepilogo ordine per prodotti virtuali */
+.woocommerce-checkout-review-order-table .woocommerce-shipping-totals { display: none; }
 
 /* ---- Responsive ---- */
 @media (max-width: 760px) {
