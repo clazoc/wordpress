@@ -303,9 +303,9 @@
 /* ---- Responsive ---- */
 @media (max-width: 760px) {
 	.ab-woo-wrap { padding: 28px 16px 48px; }
-	.ab-checkout-grid { grid-template-columns: 1fr; }
+	.ab-checkout-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
 	.ab-field-row--2col,
-	.ab-field-row--3col { grid-template-columns: 1fr; }
+	.ab-field-row--3col { grid-template-columns: 1fr !important; }
 	.ab-checkout-summary { position: static; }
 	.woocommerce table.shop_table { display: block; overflow-x: auto; }
 	.ab-thankyou-meta { flex-direction: column; gap: 16px; }
