@@ -468,3 +468,59 @@ Scarica l'app **WooCommerce** (iOS/Android) separata dall'app WordPress:
 - Gestione ordini e rimborsi
 - Statistiche vendite
 - Aggiunta/modifica prodotti
+
+---
+
+## Analytics e pixel di tracciamento
+
+### Google Analytics 4 (GA4)
+
+**Metodo consigliato: plugin "Site Kit by Google"**
+
+1. `Plugin → Aggiungi nuovo → Site Kit by Google` → Installa → Attiva
+2. Segui il wizard di configurazione: ti chiede di accedere con l'account Google che gestisce il tuo GA4
+3. Seleziona la proprietà GA4 già esistente (o creane una nuova da [analytics.google.com](https://analytics.google.com))
+4. Il codice di tracciamento viene inserito automaticamente su tutte le pagine — non serve toccare il codice
+
+Site Kit integra anche **Google Search Console** nello stesso flusso: collegala quando te lo propone, è utile per monitorare le parole chiave con cui il sito appare su Google.
+
+**Alternativa senza plugin: Google Tag Manager**
+
+Se preferisci gestire tutti i tag da un unico posto (GA4, Pixel, altri script):
+
+1. Crea un account su [tagmanager.google.com](https://tagmanager.google.com) e un nuovo contenitore per il sito
+2. Installa il plugin **"GTM4WP"** (`Plugin → Aggiungi nuovo → GTM4WP`)
+3. Inserisci il tuo ID contenitore (es. `GTM-XXXXXXX`) nelle impostazioni del plugin
+4. Da Tag Manager puoi poi aggiungere GA4, Pixel Facebook e qualsiasi altro script senza mai modificare il codice del sito
+
+### Meta Pixel (Facebook / Instagram Ads)
+
+**Con Site Kit o GTM (consigliato):**
+Se usi GTM, aggiungi il Pixel da Tag Manager: `Tag → Nuovo → tag personalizzato HTML` → incolla il codice Pixel di Meta → trigger "All Pages".
+
+**Con plugin dedicato:**
+
+1. `Plugin → Aggiungi nuovo → PixelYourSite` → Installa → Attiva
+2. Vai in `PixelYourSite → Facebook Pixel`
+3. Inserisci il tuo Pixel ID (lo trovi in [Meta Business Manager → Gestione eventi](https://business.facebook.com))
+4. Attiva gli eventi standard che ti interessano (PageView, Purchase per WooCommerce, ecc.)
+
+PixelYourSite si integra automaticamente con WooCommerce e invia l'evento `Purchase` dopo ogni ordine completato — utile per ottimizzare le campagne ads.
+
+### Google Search Console
+
+Per verificare il sito (se non usi Site Kit):
+
+1. Vai su [search.google.com/search-console](https://search.google.com/search-console)
+2. Aggiungi proprietà → scegli "Prefisso URL" → inserisci `https://altrabolletta.it`
+3. Metodo di verifica consigliato: **meta tag HTML** → copia il tag
+4. Incollalo in WordPress tramite RankMath: `RankMath → Impostazioni generali → Webmaster Tools → Google Search Console` → incolla solo il valore dell'attributo `content`
+
+### Riepilogo: quale approccio scegliere
+
+| Scenario | Soluzione |
+|----------|-----------|
+| Solo GA4, setup rapido | Site Kit by Google |
+| GA4 + Pixel + altri tag futuri | Google Tag Manager + GTM4WP |
+| Pixel con eventi WooCommerce automatici | PixelYourSite |
+| Tutti e due | GTM per GA4 e Pixel, PixelYourSite solo se vuoi eventi WC automatici senza configurazione manuale |
