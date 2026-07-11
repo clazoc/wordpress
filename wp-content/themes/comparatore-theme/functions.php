@@ -137,6 +137,15 @@ add_action( 'wp_enqueue_scripts', function () {
 
 } );
 
+// Personalizza il messaggio "non puoi aggiungere un ulteriore X nel carrello"
+add_filter( 'woocommerce_cart_product_cannot_add_another_message', function ( $message, $product ) {
+	return sprintf(
+		'Hai già "%s" nel carrello. Procedi al <a href="%s">checkout</a> per completare l\'acquisto.',
+		$product->get_name(),
+		esc_url( wc_get_checkout_url() )
+	);
+}, 10, 2 );
+
 // Rimuove la classe Blocksy ct-woocommerce-checkout che impone layout 50/50
 add_action( 'wp_footer', function () {
 	if ( ! is_checkout() ) return;
