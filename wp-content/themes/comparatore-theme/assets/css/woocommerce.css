@@ -12,12 +12,12 @@
 .woocommerce .woocommerce-notices-wrapper,
 .woocommerce-page .woocommerce-notices-wrapper { max-width: 860px; margin: 0 auto; }
 
-/* Contenitore principale su pagine WC */
+/* Contenitore principale su pagine WC — nessun vincolo di larghezza,
+   ci pensa .ab-woo-wrap con max-width 1400px */
 .woocommerce #primary,
 .woocommerce-page #primary {
-	max-width: 860px;
-	margin: 0 auto;
-	padding: 48px 0 72px;
+	max-width: none;
+	padding: 0;
 }
 
 /* ---- Tipografia e colori base ---- */
