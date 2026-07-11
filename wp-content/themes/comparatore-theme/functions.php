@@ -166,6 +166,25 @@ add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
 	return $fields;
 } );
 
+// Valida l'upload bolletta prima di creare l'ordine
+add_action( 'woocommerce_checkout_process', function () {
+	if ( empty( $_FILES['bolletta_allegato']['name'] ) ) {
+		wc_add_notice( 'È obbligatorio allegare la bolletta (PDF, JPG o PNG).', 'error' );
+		return;
+	}
+
+	$allowed = [ 'application/pdf', 'image/jpeg', 'image/png' ];
+	$type    = $_FILES['bolletta_allegato']['type'] ?? '';
+	if ( ! in_array( $type, $allowed, true ) ) {
+		wc_add_notice( 'Formato bolletta non valido. Usa PDF, JPG o PNG.', 'error' );
+		return;
+	}
+
+	if ( $_FILES['bolletta_allegato']['size'] > 5 * 1024 * 1024 ) {
+		wc_add_notice( 'La bolletta supera il limite di 5 MB.', 'error' );
+	}
+} );
+
 // Salva i campi extra sull'ordine
 add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
 	$extra_fields = [ 'billing_codice_fiscale', 'billing_piva', 'billing_sdi' ];
@@ -173,6 +192,22 @@ add_action( 'woocommerce_checkout_update_order_meta', function ( $order_id ) {
 		if ( ! empty( $_POST[ $field ] ) ) {
 			update_post_meta( $order_id, '_' . $field, sanitize_text_field( $_POST[ $field ] ) );
 		}
+	}
+} );
+
+// Carica la bolletta allegata e salvala come media WordPress collegata all'ordine
+add_action( 'woocommerce_checkout_order_created', function ( $order ) {
+	if ( empty( $_FILES['bolletta_allegato']['name'] ) ) return;
+
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+
+	$attachment_id = media_handle_upload( 'bolletta_allegato', 0 );
+
+	if ( ! is_wp_error( $attachment_id ) ) {
+		update_post_meta( $order->get_id(), '_bolletta_attachment_id', $attachment_id );
+		$order->add_order_note( 'Bolletta allegata: ' . wp_get_attachment_url( $attachment_id ) );
 	}
 } );
 
@@ -184,4 +219,10 @@ add_action( 'woocommerce_admin_order_data_after_billing_address', function ( $or
 	if ( $cf )  echo '<p><strong>Codice fiscale:</strong> ' . esc_html( $cf )  . '</p>';
 	if ( $pi )  echo '<p><strong>Partita IVA:</strong> '   . esc_html( $pi )  . '</p>';
 	if ( $sdi ) echo '<p><strong>Codice SDI/PEC:</strong> '. esc_html( $sdi ) . '</p>';
+
+	$att_id = get_post_meta( $order->get_id(), '_bolletta_attachment_id', true );
+	if ( $att_id ) {
+		$url = wp_get_attachment_url( $att_id );
+		echo '<p><strong>Bolletta allegata:</strong> <a href="' . esc_url( $url ) . '" target="_blank">Visualizza/Scarica</a></p>';
+	}
 } );

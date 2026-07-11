@@ -269,6 +269,27 @@
 }
 .ab-thankyou-notice--error p { color: var(--ab-ink); margin-bottom: 12px; }
 
+/* ---- Upload bolletta ---- */
+.ab-upload-row input[type="file"] {
+	display: block;
+	width: 100%;
+	padding: 10px 14px;
+	border: 2px dashed var(--ab-line);
+	border-radius: 6px;
+	background: var(--ab-accent-soft);
+	font-size: 14px;
+	color: var(--ab-ink);
+	cursor: pointer;
+	transition: border-color .15s;
+}
+.ab-upload-row input[type="file"]:hover { border-color: var(--ab-accent); }
+.ab-upload-hint {
+	display: block;
+	font-size: 12px;
+	color: var(--ab-ink-soft);
+	margin-top: 6px;
+}
+
 /* Nasconde la voce "Spedizione" nel riepilogo ordine per prodotti virtuali */
 .woocommerce-checkout-review-order-table .woocommerce-shipping-totals { display: none; }
 

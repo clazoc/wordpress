@@ -109,6 +109,15 @@ if ( ! is_user_logged_in() && ! WC()->checkout()->is_registration_enabled() && W
 						placeholder="Codice destinatario 7 cifre o indirizzo PEC">
 				</div>
 
+				<div class="form-row ab-upload-row">
+					<label for="bolletta_allegato">
+						Allega la tua bolletta <abbr class="required" title="obbligatorio">*</abbr>
+					</label>
+					<input type="file" name="bolletta_allegato" id="bolletta_allegato"
+						accept=".pdf,.jpg,.jpeg,.png" required>
+					<span class="ab-upload-hint">PDF, JPG o PNG — max 5 MB</span>
+				</div>
+
 			</div>
 
 			<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
