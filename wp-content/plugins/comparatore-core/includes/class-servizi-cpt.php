@@ -66,6 +66,8 @@ class AB_Servizi_CPT {
 		$coming_soon  = get_post_meta( $post->ID, '_ab_coming_soon',  true );
 		$info_subject    = get_post_meta( $post->ID, '_ab_info_subject',    true );
 		$woo_product_id  = get_post_meta( $post->ID, '_ab_woo_product_id',  true );
+		$immagine_id     = (int) get_post_meta( $post->ID, '_ab_immagine_id', true );
+		$immagine_url    = $immagine_id ? wp_get_attachment_image_url( $immagine_id, 'medium' ) : '';
 		?>
 		<p>
 			<label for="ab_cat"><strong>Categoria</strong></label><br>
@@ -81,9 +83,41 @@ class AB_Servizi_CPT {
 			<input type="text" name="ab_anchor" id="ab_anchor" value="<?php echo esc_attr( $anchor ); ?>" style="width:100%" placeholder="es. servizio-confronto">
 		</p>
 		<p>
-			<label for="ab_emoji"><strong>Emoji</strong></label><br>
+			<label for="ab_emoji"><strong>Emoji</strong> <span style="font-weight:400;color:#666">(ignorata se carichi un'immagine sotto)</span></label><br>
 			<input type="text" name="ab_emoji" id="ab_emoji" value="<?php echo esc_attr( $emoji ); ?>" style="width:100%" placeholder="es. 🔍">
 		</p>
+		<p style="border-top:1px solid #ddd;padding-top:10px;margin-top:4px">
+			<label><strong>Immagine servizio</strong></label><br>
+			<?php if ( $immagine_url ) : ?>
+				<img id="ab_immagine_preview" src="<?php echo esc_url( $immagine_url ); ?>" style="max-width:100%;margin:6px 0;border-radius:4px;display:block">
+			<?php else : ?>
+				<img id="ab_immagine_preview" src="" style="max-width:100%;margin:6px 0;border-radius:4px;display:none">
+			<?php endif; ?>
+			<input type="hidden" name="ab_immagine_id" id="ab_immagine_id" value="<?php echo esc_attr( $immagine_id ?: '' ); ?>">
+			<button type="button" id="ab_immagine_scegli" class="button">Scegli immagine</button>
+			<button type="button" id="ab_immagine_rimuovi" class="button" style="<?php echo $immagine_id ? '' : 'display:none'; ?>">Rimuovi</button>
+		</p>
+		<script>
+		jQuery(function($){
+			var frame;
+			$('#ab_immagine_scegli').on('click', function(){
+				if(frame){ frame.open(); return; }
+				frame = wp.media({ title:'Scegli immagine servizio', button:{text:'Usa immagine'}, multiple:false });
+				frame.on('select', function(){
+					var att = frame.state().get('selection').first().toJSON();
+					$('#ab_immagine_id').val(att.id);
+					$('#ab_immagine_preview').attr('src', att.sizes?.medium?.url || att.url).show();
+					$('#ab_immagine_rimuovi').show();
+				});
+				frame.open();
+			});
+			$('#ab_immagine_rimuovi').on('click', function(){
+				$('#ab_immagine_id').val('');
+				$('#ab_immagine_preview').attr('src','').hide();
+				$(this).hide();
+			});
+		});
+		</script>
 		<p>
 			<label>
 				<input type="checkbox" name="ab_is_free" value="1" <?php checked( $is_free, '1' ); ?>>
@@ -129,6 +163,7 @@ class AB_Servizi_CPT {
 			'_ab_prezzo'          => 'ab_prezzo',
 			'_ab_info_subject'    => 'ab_info_subject',
 			'_ab_woo_product_id'  => 'ab_woo_product_id',
+			'_ab_immagine_id'     => 'ab_immagine_id',
 		];
 		foreach ( $fields as $meta_key => $input_key ) {
 			$value = isset( $_POST[ $input_key ] ) ? sanitize_text_field( $_POST[ $input_key ] ) : '';

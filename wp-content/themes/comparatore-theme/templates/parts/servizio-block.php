@@ -7,6 +7,7 @@ if ( ! isset( $post ) || ! isset( $index ) ) return;
 
 $anchor          = get_post_meta( $post->ID, '_ab_anchor',          true );
 $emoji           = get_post_meta( $post->ID, '_ab_emoji',           true ) ?: '⚡';
+$immagine_id     = (int) get_post_meta( $post->ID, '_ab_immagine_id', true );
 $is_free         = get_post_meta( $post->ID, '_ab_is_free',         true );
 $prezzo          = get_post_meta( $post->ID, '_ab_prezzo',          true );
 $coming_soon     = get_post_meta( $post->ID, '_ab_coming_soon',     true );
@@ -51,6 +52,12 @@ $anchor_attr   = $anchor ? ' id="' . esc_attr( $anchor ) . '"' : '';
 				<?php endif; ?>
 			</div>
 		</div>
-		<div class="ab-service-block-img" aria-hidden="true"><?php echo esc_html( $emoji ); ?></div>
+		<div class="ab-service-block-img" aria-hidden="true">
+			<?php if ( $immagine_id ) : ?>
+				<?php echo wp_get_attachment_image( $immagine_id, 'medium', false, [ 'class' => 'ab-service-img', 'loading' => 'lazy' ] ); ?>
+			<?php else : ?>
+				<?php echo esc_html( $emoji ); ?>
+			<?php endif; ?>
+		</div>
 	</div>
 </div>
