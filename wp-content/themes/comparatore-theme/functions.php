@@ -137,6 +137,12 @@ add_action( 'wp_enqueue_scripts', function () {
 
 } );
 
+// Rimuove la classe Blocksy ct-woocommerce-checkout che impone layout 50/50
+add_action( 'wp_footer', function () {
+	if ( ! is_checkout() ) return;
+	echo '<script>document.querySelector("form.ct-woocommerce-checkout")?.classList.remove("ct-woocommerce-checkout");</script>';
+} );
+
 // ---- Campi fatturazione extra (Codice Fiscale, P.IVA, SDI) ----
 add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
 	$fields['billing']['billing_codice_fiscale'] = [
