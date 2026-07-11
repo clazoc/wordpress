@@ -28,17 +28,15 @@ if ( ! is_user_logged_in() && ! WC()->checkout()->is_registration_enabled() && W
 
 			<div class="ab-checkout-fields">
 
-				<div class="ab-field-row ab-field-row--2col">
-					<div class="form-row form-row-first">
-						<label for="billing_first_name">Nome <abbr class="required" title="obbligatorio">*</abbr></label>
-						<input type="text" class="input-text" name="billing_first_name" id="billing_first_name"
-							value="<?php echo esc_attr( WC()->checkout()->get_value( 'billing_first_name' ) ); ?>" autocomplete="given-name" required>
-					</div>
-					<div class="form-row form-row-last">
-						<label for="billing_last_name">Cognome <abbr class="required" title="obbligatorio">*</abbr></label>
-						<input type="text" class="input-text" name="billing_last_name" id="billing_last_name"
-							value="<?php echo esc_attr( WC()->checkout()->get_value( 'billing_last_name' ) ); ?>" autocomplete="family-name" required>
-					</div>
+				<div class="form-row">
+					<label for="billing_first_name">Nome <abbr class="required" title="obbligatorio">*</abbr></label>
+					<input type="text" class="input-text" name="billing_first_name" id="billing_first_name"
+						value="<?php echo esc_attr( WC()->checkout()->get_value( 'billing_first_name' ) ); ?>" autocomplete="given-name" required>
+				</div>
+				<div class="form-row">
+					<label for="billing_last_name">Cognome <abbr class="required" title="obbligatorio">*</abbr></label>
+					<input type="text" class="input-text" name="billing_last_name" id="billing_last_name"
+						value="<?php echo esc_attr( WC()->checkout()->get_value( 'billing_last_name' ) ); ?>" autocomplete="family-name" required>
 				</div>
 
 				<div class="form-row">
