@@ -75,7 +75,8 @@
 }
 
 .woocommerce-message::before,
-.woocommerce-info::before {
+.woocommerce-info::before,
+.woocommerce-error::before {
 	display: none !important;
 }
 
