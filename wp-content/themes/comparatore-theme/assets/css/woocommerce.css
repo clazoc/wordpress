@@ -71,6 +71,15 @@
 	border-top-color: var(--ab-accent) !important;
 	background: var(--ab-accent-soft) !important;
 	color: var(--ab-ink) !important;
+	padding-left: 3.5em !important;
+}
+
+.woocommerce-message::before,
+.woocommerce-info::before {
+	position: absolute;
+	top: 50%;
+	left: 1em;
+	transform: translateY(-50%);
 }
 
 .woocommerce-error {
