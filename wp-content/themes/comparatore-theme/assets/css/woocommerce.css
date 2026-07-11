@@ -12,12 +12,23 @@
 .woocommerce .woocommerce-notices-wrapper,
 .woocommerce-page .woocommerce-notices-wrapper { max-width: 860px; margin: 0 auto; }
 
-/* Contenitore principale su pagine WC — nessun vincolo di larghezza,
-   ci pensa .ab-woo-wrap con max-width 1400px */
+/* Rimuovi tutti i vincoli di larghezza dei contenitori Blocksy su pagine WC —
+   la larghezza è gestita da .ab-woo-wrap */
 .woocommerce #primary,
-.woocommerce-page #primary {
-	max-width: none;
-	padding: 0;
+.woocommerce-page #primary,
+.woocommerce .ct-container,
+.woocommerce-page .ct-container,
+.woocommerce .ct-main-content-inner,
+.woocommerce-page .ct-main-content-inner,
+.woocommerce .site-content,
+.woocommerce-page .site-content,
+.woocommerce .entry-content,
+.woocommerce-page .entry-content {
+	max-width: none !important;
+	width: 100% !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	float: none !important;
 }
 
 /* ---- Tipografia e colori base ---- */
@@ -191,8 +202,8 @@
 .ab-checkout-form { margin-top: 0; }
 .ab-checkout-grid {
 	display: grid;
-	grid-template-columns: 1fr 420px;
-	gap: 64px;
+	grid-template-columns: 58% 38%;
+	gap: 4%;
 	align-items: start;
 }
 .ab-checkout-section-title {
