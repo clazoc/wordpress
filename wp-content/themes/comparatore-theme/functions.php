@@ -135,6 +135,18 @@ add_action( 'wp_enqueue_scripts', function () {
 		);
 	}
 
+	if (
+		( is_page() && get_page_template_slug() === 'templates/page-glossario.php' ) ||
+		is_singular( 'ab_glossario' )
+	) {
+		wp_enqueue_style(
+			'comparatore-theme-glossario',
+			get_stylesheet_directory_uri() . '/assets/css/glossario.css',
+			[ 'comparatore-theme-tokens' ],
+			ab_asset_ver( 'assets/css/glossario.css' )
+		);
+	}
+
 } );
 
 // Personalizza il messaggio "non puoi aggiungere un ulteriore X nel carrello"

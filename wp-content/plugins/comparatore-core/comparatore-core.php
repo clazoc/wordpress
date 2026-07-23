@@ -20,3 +20,4 @@ define( 'COMPARATORE_CORE_URL', plugin_dir_url( __FILE__ ) );
  */
 
 require_once COMPARATORE_CORE_PATH . 'includes/class-servizi-cpt.php';
+require_once COMPARATORE_CORE_PATH . 'includes/class-glossario-cpt.php';

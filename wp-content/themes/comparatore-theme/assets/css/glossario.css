@@ -1,0 +1,173 @@
+/* Glossario — usa i token di tokens.css */
+
+/* ---- Hero ---- */
+.ab-glossario-hero {
+	background: linear-gradient(180deg, #f3f7f6 0%, var(--ab-bg) 100%);
+	border-bottom: 1px solid var(--ab-line);
+	padding: 56px 0 48px;
+}
+.ab-glossario-hero h1 { font-size: 34px; margin-bottom: 12px; letter-spacing: -0.4px; }
+.ab-glossario-hero-desc { font-size: 16px; color: var(--ab-ink-soft); line-height: 1.65; max-width: 640px; }
+.ab-glossario-hero-desc p { margin: 0; }
+
+/* ---- Nav A–Z ---- */
+.ab-glossario-az-nav {
+	background: #fff;
+	border-bottom: 1px solid var(--ab-line);
+	padding: 12px 0;
+	position: sticky;
+	top: 0;
+	z-index: 9;
+}
+.ab-glossario-az-nav .wrap {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.ab-az-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+}
+.ab-az-link--active {
+	border: 1px solid var(--ab-line);
+	color: var(--ab-accent-hover);
+	background: #fff;
+	transition: border-color .15s, background .15s;
+}
+.ab-az-link--active:hover {
+	border-color: var(--ab-accent);
+	background: var(--ab-accent-soft);
+}
+.ab-az-link--empty {
+	color: var(--ab-line);
+	cursor: default;
+}
+
+/* ---- Wrapper contenuto ---- */
+.ab-glossario-wrap {
+	padding-top: 56px;
+	padding-bottom: 80px;
+}
+.ab-glossario-empty { color: var(--ab-ink-soft); font-size: 15px; }
+.ab-glossario-empty a { color: var(--ab-accent-hover); }
+
+/* ---- Sezioni per lettera ---- */
+.ab-glossario-sezione { margin-bottom: 48px; scroll-margin-top: 72px; }
+.ab-glossario-lettera {
+	font-size: 28px;
+	font-weight: 800;
+	color: var(--ab-accent-hover);
+	margin: 0 0 16px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid var(--ab-accent-soft);
+	letter-spacing: -0.5px;
+}
+
+/* ---- Lista DL ---- */
+.ab-glossario-lista { margin: 0; }
+.ab-glossario-voce {
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	gap: 12px 32px;
+	padding: 16px 0;
+	border-bottom: 1px solid var(--ab-line);
+	align-items: baseline;
+}
+.ab-glossario-voce:last-child { border-bottom: none; }
+
+.ab-glossario-termine {
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--ab-ink);
+}
+.ab-glossario-termine a {
+	color: var(--ab-ink);
+	text-decoration: none;
+}
+.ab-glossario-termine a:hover { color: var(--ab-accent-hover); }
+
+.ab-glossario-definizione {
+	font-size: 14px;
+	color: var(--ab-ink-soft);
+	line-height: 1.6;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 8px;
+}
+.ab-glossario-leggi {
+	font-size: 13px;
+	font-weight: 700;
+	color: var(--ab-accent-hover);
+	white-space: nowrap;
+	text-decoration: none;
+}
+.ab-glossario-leggi:hover { text-decoration: underline; }
+
+/* ---- Pagina singolo termine ---- */
+.ab-glossario-single-wrap {
+	max-width: 860px;
+	margin: 0 auto;
+	padding: 48px 0 72px;
+}
+.ab-glossario-breadcrumb {
+	font-size: 13px;
+	color: var(--ab-ink-soft);
+	margin-bottom: 36px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+.ab-glossario-breadcrumb a { color: var(--ab-ink-soft); text-decoration: none; }
+.ab-glossario-breadcrumb a:hover { color: var(--ab-ink); }
+.ab-bc-sep { color: var(--ab-line); }
+.ab-bc-current { color: var(--ab-ink); font-weight: 600; }
+
+.ab-glossario-single-header { margin-bottom: 32px; }
+.ab-glossario-single-header h1 { font-size: 32px; margin-bottom: 12px; letter-spacing: -0.4px; }
+.ab-glossario-single-def {
+	font-size: 16px;
+	color: var(--ab-ink-soft);
+	line-height: 1.65;
+	margin: 0;
+	padding: 16px 20px;
+	background: var(--ab-accent-soft);
+	border-left: 4px solid var(--ab-accent);
+	border-radius: 4px;
+}
+
+.ab-glossario-single-content { font-size: 15px; line-height: 1.75; color: var(--ab-ink); }
+.ab-glossario-single-content p { margin-bottom: 1.2em; }
+.ab-glossario-single-content h2 { font-size: 22px; margin: 2em 0 .6em; }
+.ab-glossario-single-content h3 { font-size: 18px; margin: 1.6em 0 .5em; }
+
+.ab-glossario-single-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--ab-line); }
+.ab-glossario-back {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--ab-accent-hover);
+	text-decoration: none;
+}
+.ab-glossario-back:hover { text-decoration: underline; }
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+	.ab-glossario-hero { padding: 36px 0 28px; }
+	.ab-glossario-hero h1 { font-size: 26px; }
+	.ab-glossario-voce { grid-template-columns: 1fr; gap: 4px; }
+	.ab-glossario-termine { font-size: 14px; }
+	.ab-glossario-lettera { font-size: 22px; }
+	.ab-glossario-wrap { padding-top: 36px; padding-bottom: 56px; }
+	.ab-glossario-single-wrap { padding: 28px 0 48px; }
+}
