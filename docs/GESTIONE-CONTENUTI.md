@@ -523,4 +523,59 @@ Per verificare il sito (se non usi Site Kit):
 | Solo GA4, setup rapido | Site Kit by Google |
 | GA4 + Pixel + altri tag futuri | Google Tag Manager + GTM4WP |
 | Pixel con eventi WooCommerce automatici | PixelYourSite |
+
+---
+
+## Il Glossario
+
+### Come funziona
+
+Il glossario è una sezione dedicata ai termini del settore energetico (kWh, PUN, spread, ecc.). Ogni termine è un contenuto separato gestito dal pannello **Glossario**. Nella pagina pubblica i termini appaiono ordinati alfabeticamente con un menu A–Z in cima per saltare direttamente alla lettera desiderata.
+
+Per ogni termine puoi scegliere se mostrare solo la **definizione breve** (una o due righe nella lista) oppure creare anche una **pagina di approfondimento** con testo esteso.
+
+### Aggiungere un termine
+
+1. Vai su **Glossario → Aggiungi termine** nel pannello laterale sinistro
+2. Nel campo **Titolo** scrivi il termine esatto (es. "Kilowattora")
+3. Nel riquadro **Dettagli termine** (sotto l'editor):
+   - **Definizione breve** — 1-2 righe che compaiono nella lista del glossario
+   - **Spunta "Ha pagina di approfondimento"** — solo se vuoi anche una pagina dedicata (vedi sotto)
+4. Clicca **Pubblica**
+
+Il termine comparirà automaticamente nella pagina glossario, raggruppato sotto la lettera iniziale.
+
+### Aggiungere una pagina di approfondimento
+
+Se un termine è abbastanza complesso da meritare una spiegazione più lunga:
+
+1. Spunta la casella **"Questo termine ha una pagina di approfondimento"** nel riquadro Dettagli termine
+2. Scrivi il testo esteso nell'**editor principale** (quello grande al centro, uguale agli articoli)
+3. Pubblica
+
+Nella lista del glossario comparirà automaticamente il link **"Leggi di più →"** accanto alla definizione breve, che porta alla pagina dedicata.
+
+### Modificare o eliminare un termine
+
+- **Modificare**: vai su **Glossario → Tutti i termini**, clicca sul titolo del termine
+- **Eliminare**: dalla stessa lista, passa il mouse sul termine e clicca "Cestino"
+
+### Creare la pagina pubblica del glossario
+
+La pagina del glossario va creata una volta sola come qualsiasi pagina WordPress:
+
+1. Vai su **Pagine → Aggiungi nuova**
+2. Titolo: "Glossario" (o quello che preferisci)
+3. Nel pannello destro, sezione **Attributi di pagina → Template**, scegli **"Glossario"**
+4. Il campo contenuto (editor) è opzionale: se scrivi qualcosa comparirà come sottotitolo sotto il titolo della pagina
+5. Pubblica e aggiungi la pagina al menu da **Aspetto → Menu**
+
+> Se dopo aver creato la pagina i link ai termini non funzionano, vai su **Impostazioni → Permalink** e clicca **"Salva le modifiche"** (senza cambiare nulla) per aggiornare le regole di routing WordPress.
+
+### Consigli per un glossario efficace
+
+- Usa il **titolo esatto** del termine così come lo cerca l'utente (es. "Corrispettivo fisso", non "CF")
+- La **definizione breve** deve rispondere alla domanda "cos'è?" in modo diretto, senza tecnicismi ulteriori
+- Crea la pagina di approfondimento solo se hai davvero qualcosa di aggiuntivo da dire — non gonfiare il testo solo per avere una pagina separata
+- L'**ordine alfabetico** è automatico: non devi preoccuparti dell'ordine in cui inserisci i termini
 | Tutti e due | GTM per GA4 e Pixel, PixelYourSite solo se vuoi eventi WC automatici senza configurazione manuale |
